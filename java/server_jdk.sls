@@ -4,7 +4,7 @@
 
 server_jdk_tar:
   file.managed:
-{% if jdk['source'] is defined -%}
+{%- if jdk['source'] is defined %}
     - name: {{ home }}/server_jdk.tgz
     - source: {{ jdk['source'] }}
     - source_hash: {{ jdk['source_hash'] }}
