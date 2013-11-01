@@ -4,7 +4,7 @@
 
 server_jre_tar:
   file.managed:
-{% if jre['source'] is defined -%}
+{%- if jre['source'] is defined %}
     - name: {{ home }}/server_jre.tgz
     - source: {{ jre['source'] }}
     - source_hash: {{ jre['source_hash'] }}
