@@ -7,6 +7,8 @@ downloaded manually and placed in the files directory.
 
 Alternatively, you can specify the source, source_hash, and home in your `pillar` file, like so:
 
+.. code-block:: yaml
+
     java:
       jre:
         source: http://java.com...
