@@ -7,15 +7,9 @@ control 'java archive' do
   title 'should be installed'
 
   describe package('tar') do
-    it { should be installed }
+    it { should be_installed }
   end
   describe directory('/usr/lib/jvm/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0') do
-    it { should exist }
-  end
-  describe directory('/tmp/java_tmp_salt') do
-    it { should exist }
-  end
-  describe file('/tmp/java_tmp_salt/java-archive.tar.gz') do
     it { should exist }
   end
   describe file('/usr/lib/jvm/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0/bin/java') do

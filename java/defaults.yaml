@@ -20,8 +20,7 @@ java:
 
   adopt:
     # https://adoptopenjdk.net/releases.html, https://www.eclipse.org/openj9
-    # /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jre/Contents/Home/bin
-    javaversion: 8u252-b09_openj9-0.20.0   # or hotspot jdk8u252-b09
+    javaversion: 8u252-b09_openj9-0.20.0   # or say jdk8u252-b09 (hotspot)
     jvm: openj9    # or hotspot
     os: linux
     commands:
@@ -102,27 +101,61 @@ java:
     javaversion: 8u202b1491  # or say 11_0_4-b546
     os: linux
     commands:
-      - clhsdb
-      - hsdb
+      # common binaries #
       - java
       - jjs
-      - keytool
-      - orbd
       - pack200
-      - policytool
+      - keytool
       - rmid
       - rmiregistry
+      - unpack200
+
+      # jbsdk #
+      - appletviewer
+      - clhsdb
+      - extcheck
+      - hsdb
+      - idlj
+      - jarsigner
+      - jcmd
+      - jstat
+      - java
+      - jconsole
+      - jmap
+      - jstatd
+      - javac
+      - jdb
+      - jps
+      - javadoc
+      - jdeps
+      - jrunscript
+      - javah
+      - jhat
+      - jar
+      - javap
+      - jinfo
+      - jstack
+      - jsadebugd
+      - native2ascii
+      - orbd
+      - policytool
+      - rmic
+      - schemagen
+      - serialver
       - servertool
       - tnameserv
-      - unpack200
+      - wsgen
+      - wsimport
+      - xjc
     pkg:
-      name: jbsdk   # jbre
+      name: jbsdk   # jbr or jbre
       use_upstream_archive: true
       use_upstream_macapp: false
       use_upstream_package: false
       uri: https://jetbrains.bintray.com/intellij-jdk
       archive:
-        source_hash: 7c2d8a3cb0e7c6b35ea668f346429476b95929dd369b5336a70030490aeab768
+        source_hash: 7c2d8a3cb0e7c6b35ea668f346429476b95929dd369b5336a70030490aeab768  # linux
+        # source_hash: 4d00c0db25ca5e43970af68198b0086befd68da69dcab645790c402e63a1494b  # mac
 
   oracle:
     # https://www.oracle.com/java/technologies/javase-downloads.html
@@ -151,9 +184,10 @@ java:
       use_upstream_package: false
       uri: http://download.oracle.com/otn-pub/java
       archive:
-        source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e
+        source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e    # jdk
         # source_hash: 92fc256da54af798dc34aeab837df816577f2c46dd111f9f94058c186d36f589  # jre
-        jce_source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59
+      jce:
+        source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59  # zip
 
   zulu:
     # https://www.azul.com/downloads/zulu-community/?architecture=x86-64-bit&package=jdk

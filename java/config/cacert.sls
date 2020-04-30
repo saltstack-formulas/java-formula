@@ -9,12 +9,16 @@
        {%- set sls_macapp_install = tplroot ~ '.macapp' %}
        {%- set sls_package_install = tplroot ~ '.package' %}
 
-       {%- for ca in salt['pillar.fetch']('java:cacert', default=[] ) %}
-
 include:
-  {{ '- ' ~ sls_macapp_install if j[j.provider]['pkg']['use_upstream_macapp'] else '' }}
-  {{ '- ' ~ sls_archive_install if j[j.provider]['pkg']['use_upstream_archive'] else '' }}
-  {{ '- ' ~ sls_package_install if j[j.provider]['pkg']['use_upstream_package'] else '' }}
+       {%- if j[j.provider]['pkg']['use_upstream_archive'] %}
+  - {{ sls_archive_install }}
+       {%- elif j[j.provider]['pkg']['use_upstream_macapp'] %}
+  - {{ sls_macapp_install }}
+       {%- else %}
+  - {{ sls_package_install }}
+       {%- endif %}
+
+       {%- for ca in salt['pillar.fetch']('java:cacert', default=[] ) %}
 
 java-cacert-install-{{ ca.alias }}-managed:
   file.managed:
