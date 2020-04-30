@@ -50,10 +50,24 @@ java:
     pkg:
       name: jdk  # or jre
       uri: http://example.com/downloads    # not https://download.oracle.com/otn-pub/java
+
+             {%- if grains.kernel|lower == 'linux' %}
       archive:
-        source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e
-        # source_hash: 92fc256da54af798dc34aeab837df816577f2c46dd111f9f94058c186d36f589  # jre
-        jce_source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59
+        source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e  # jdk linux
+        # source_hash: 92fc256da54af798dc34aeab837df816577f2c46dd111f9f94058c186d36f589  # jre linux
+
+             {%- elif grains.kernel|lower == 'macos' %}
+      use_upstream_macapp: true
+      use_upstream_archive: false
+      archive:
+        source_hash: b41367948cf99ca0b8d1571f116b7e3e322dd1ebdfd4d390e959164d75b97c20  # jdk x64 tarball
+      # source_hash: 671594b665c40ecaf22361322fbf7ca893a63ad7ef698d1482ee03e26ab85aaa  # jre x64 tarball
+      macapp:
+        source_hash: eef71e68ce9c2c7e3d7e910616e555b219cdd98f4fa59709279a40b639f1d212  # jdk x64 macapp
+      # source_hash: 32322f6401d70b54de2370cbd5597dbcd06c12293722b38551face88aba3ac99  # jre x64 macapp
+             {%- endif %}
+      jce:
+        source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59 # jdk mac
 
   zulu:
     # https://www.azul.com/downloads/zulu-community/?architecture=x86-64-bit&package=jdk

@@ -7,15 +7,9 @@ control 'java archive' do
   title 'should be installed'
 
   describe package('tar') do
-    it { should be installed }
+    it { should be_installed }
   end
   describe directory('/usr/lib/jvm/zulu-8.0.252') do
-    it { should exist }
-  end
-  describe directory('/tmp/java_tmp_salt') do
-    it { should exist }
-  end
-  describe file('/tmp/java_tmp_salt/java-archive.tar.gz') do
     it { should exist }
   end
   describe file('/usr/lib/jvm/zulu-8.0.252/bin/java') do

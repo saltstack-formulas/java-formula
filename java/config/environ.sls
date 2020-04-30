@@ -11,9 +11,13 @@
        {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
 include:
-  {{ '- ' ~ sls_macapp_install if j[j.provider]['pkg']['use_upstream_macapp'] else '' }}
-  {{ '- ' ~ sls_archive_install if j[j.provider]['pkg']['use_upstream_archive'] else '' }}
-  {{ '- ' ~ sls_package_install if j[j.provider]['pkg']['use_upstream_package'] else '' }}
+       {%- if j[j.provider]['pkg']['use_upstream_archive'] %}
+  - {{ sls_archive_install }}
+       {%- elif j[j.provider]['pkg']['use_upstream_macapp'] %}
+  - {{ sls_macapp_install }}
+       {%- else %}
+  - {{ sls_package_install }}
+       {%- endif %}
 
 java-environ-file-install-file-managed:
   file.managed:
@@ -29,9 +33,5 @@ java-environ-file-install-file-managed:
     - template: jinja
     - context:
         environ: {{ j.environ|json }}
-    - require:
-      {{ '- sls: ' ~ sls_macapp_install if j[j.provider]['pkg']['use_upstream_macapp'] else '' }}
-      {{ '- sls: ' ~ sls_archive_install if j[j.provider]['pkg']['use_upstream_archive'] else '' }}
-      {{ '- sls: ' ~ sls_package_install if j[j.provider]['pkg']['use_upstream_package'] else '' }}
 
 {%- endif %}

@@ -128,6 +128,7 @@ MacOS:
         source_hash: e3d35fdfe4f62022c42029c052f2b8277b3d896496cf45c2e82d251f5d49701a   # jdk x64 tarball
 
   intellij:
+    javaversion: 8u202b1490
     os: osx
     pkg:
       archive:
@@ -137,10 +138,8 @@ MacOS:
     os: macosx
     environ_file: /etc/defaults/java-oracle.sh
     pkg:
-      use_upstream_macpkg: true
+      use_upstream_macapp: true
       use_upstream_archive: false
-      jce:
-        source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59
       archive:
         source_hash: b41367948cf99ca0b8d1571f116b7e3e322dd1ebdfd4d390e959164d75b97c20  # jdk x64 tarball
       # source_hash: 671594b665c40ecaf22361322fbf7ca893a63ad7ef698d1482ee03e26ab85aaa  # jre x64 tarball
@@ -151,6 +150,8 @@ MacOS:
   zulu:
     os: macosx
     pkg:
+      use_upstream_macapp: true
+      use_upstream_archive: false
       archive:
         source_hash: 43570b0a6455a02d25b0c4937164560fdb0a9478f9010c583f510fa80881ce0b
       macapp:
