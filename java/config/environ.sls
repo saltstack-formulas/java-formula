@@ -30,8 +30,8 @@ java-environ-file-install-file-managed:
     - context:
         environ: {{ j.environ|json }}
     - require:
-      {{ '- ' ~ sls_macapp_install if j[j.provider]['pkg']['use_upstream_macapp'] else '' }}
-      {{ '- ' ~ sls_archive_install if j[j.provider]['pkg']['use_upstream_archive'] else '' }}
-      {{ '- ' ~ sls_package_install if j[j.provider]['pkg']['use_upstream_package'] else '' }}
+      {{ '- sls: ' ~ sls_macapp_install if j[j.provider]['pkg']['use_upstream_macapp'] else '' }}
+      {{ '- sls: ' ~ sls_archive_install if j[j.provider]['pkg']['use_upstream_archive'] else '' }}
+      {{ '- sls: ' ~ sls_package_install if j[j.provider]['pkg']['use_upstream_package'] else '' }}
 
 {%- endif %}
