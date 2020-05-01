@@ -32,9 +32,9 @@ java-cacert-install-{{ ca.alias }}-managed:
     - unless: {{ j.dir.symlink }}/keytool -list -keystore {{ j.cacert_keystore }} -storepass {{ j.cacert_keystore_password }} | grep -qi {{ ca.fingeprint }}  # noqa 204
     - makedirs: True
     - require:
-      {{ '- ' ~ sls_macapp_install if j[j.provider]['pkg']['use_upstream_macapp'] else '' }}
-      {{ '- ' ~ sls_archive_install if j[j.provider]['pkg']['use_upstream_archive'] else '' }}
-      {{ '- ' ~ sls_package_install if j[j.provider]['pkg']['use_upstream_package'] else '' }}
+      {{ '- sls: ' ~ sls_macapp_install if j[j.provider]['pkg']['use_upstream_macapp'] else '' }}
+      {{ '- sls: ' ~ sls_archive_install if j[j.provider]['pkg']['use_upstream_archive'] else '' }}
+      {{ '- sls: ' ~ sls_package_install if j[j.provider]['pkg']['use_upstream_package'] else '' }}
     - require_in:
       - file: java-cacert-install-{{ ca.alias }}-tidyup
 

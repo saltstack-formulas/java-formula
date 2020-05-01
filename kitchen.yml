@@ -288,7 +288,7 @@ suites:
             '*':
               - java
       pillars_from_files:
-        java.sls: test/salt/oracle/zulu.sls
+        java.sls: test/salt/zulu/pillar.sls
     verifier:
       inspec_tests:
         - path: test/integration/zulu

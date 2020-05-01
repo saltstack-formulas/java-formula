@@ -32,7 +32,7 @@ java-package-archive-install:
     - source_hash: {{ j.pkg.archive.source_hash }}
     - enforce_toplevel: false
     - trim_output: true
-    - options: '--strip-components=1'
+    - options: "--strip-components={{ j[j.provider]['pkg']['archive']['strip_components'] }}"
     - user: {{ j.identity.rootuser }}
     - group: {{ j.identity.rootgroup }}
     - require:

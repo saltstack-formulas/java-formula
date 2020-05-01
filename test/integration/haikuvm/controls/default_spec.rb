@@ -12,13 +12,13 @@ control 'java archive' do
   describe directory('/usr/lib/jvm/HaikuVM-1.4.3') do
     it { should exist }
   end
-  describe file('/usr/lib/jvm/HaikuVM-1.4.3/bin/java') do
+  describe file('/usr/lib/jvm/HaikuVM-1.4.3/bin/haiku') do
     it { should exist }
   end
   describe file('/etc/default/java.sh') do
     it { should exist }
   end
-  describe file('/usr/local/bin/java') do
+  describe file('/usr/local/bin/haiku') do
     it { should exist }
   end
 end
