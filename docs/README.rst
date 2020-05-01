@@ -28,6 +28,7 @@ Formula to install Java on GNU/Linux and MacOS, supporting multiple JDK/JRE prov
 Set `java.provider = <adopt|amazon|graalvm|haikuvm|intellij|oracle|zulu>` to choose.
 
 .. contents:: **Table of Contents**
+   :depth: 1
 
 General notes
 -------------
