@@ -178,7 +178,7 @@ suites:
       state_top:
         base:
           '*':
-            - java.clean
+            # java.clean
             - java
       pillars:
         top.sls:
@@ -195,7 +195,7 @@ suites:
       state_top:
         base:
           '*':
-            - java.clean
+            # java.clean
             - java
       pillars:
         top.sls:
@@ -212,7 +212,7 @@ suites:
       state_top:
         base:
           '*':
-            - java.clean
+            # java.clean
             - java
       pillars:
         top.sls:
@@ -229,7 +229,7 @@ suites:
       state_top:
         base:
           '*':
-            - java.clean
+            # java.clean
             - java
       pillars:
         top.sls:
@@ -246,7 +246,7 @@ suites:
       state_top:
         base:
           '*':
-            - java.clean
+            # java.clean
             - java
       pillars:
         top.sls:
@@ -263,7 +263,7 @@ suites:
       state_top:
         base:
           '*':
-            - java.clean
+            # java.clean
             - java
       pillars:
         top.sls:
@@ -280,7 +280,7 @@ suites:
       state_top:
         base:
           '*':
-            - java.clean
+            # java.clean
             - java
       pillars:
         top.sls:
