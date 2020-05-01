@@ -67,21 +67,18 @@
     {%- set name = 'jre' if j.intellij.pkg.name == 'jbsdk' else 'jdk' %}
 
 {%- elif 'oracle' in provider|lower %}
-     {%- set jversion = '' if 'javaversion' not in j.oracle else j.oracle.javaversion %}
+     {%- set jversion = j.oracle.javaversion %}
      {%- set jshortversion = jversion.split('-')[0].split('+')[0] %}
      {%- set name = j.oracle.pkg.name %}
      {%- set suffix = '_bin' if j.release|int > 8 else '' %}
 
-     {# get the correct uri #}
      {%- if 'oracle.com/otn' in j.oracle.pkg.uri %}
-               {# its an otn uri #}
             {%- set md5 = '' if 'url_md5' not in j.oracle else j.oracle.url_md5 %}
             {%- set uri = '%s/%s/%s'|format(j.oracle.pkg.uri, jversion, md5) %}
             {%- do j.pkg.update({'cookieheader': '-b oraclelicense=accept-securebackup-cookie'}) %}
 
      {%- else %}
-               {# its not an otn uri #}
-            {%- set uri = '%s/%s%s/%s'|format(j.oracle.pkg.uri, jversion) %}   {# not an oracle uri #}
+            {%- set uri = j.oracle.pkg.uri %}   {# non-oracle uri #}
      {%- endif %}
      {%- set url = '%s/%s-%s-%s-%s%s'|format(uri, name, jshortversion, j.oracle.os, j.arch, suffix) %}
      {%- if j.release|int > 8 %}

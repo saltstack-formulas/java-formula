@@ -25,8 +25,6 @@ Formula to install Java on GNU/Linux and MacOS, supporting multiple JDK/JRE prov
 - Zulu <https://www.azul.com>
 
 
-Set `java.provider = <adopt|amazon|graalvm|haikuvm|intellij|oracle|zulu>` to choose.
-
 .. contents:: **Table of Contents**
    :depth: 1
 
@@ -56,7 +54,7 @@ Please see `How to contribute <https://github.com/saltstack-formulas/.github/blo
 Special notes
 -------------
 
-None.
+Set `java.provider = adopt|amazon|graalvm|haikuvm|intellij|oracle|zulu` pillar to change jdk provider.
 
 
 Available states
