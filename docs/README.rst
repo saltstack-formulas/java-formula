@@ -21,8 +21,9 @@ Formula to install Java on GNU/Linux and MacOS, supporting multiple JDK/JRE prov
 - Graalvm <https://www.graalvm.org>
 - Haikuvm <http://haiku-vm.sourceforge.net>
 - IntelliJ <https://bintray.com/jetbrains/intellij-jdk>
--  <https://www.oracle.com/java>
+- Oracle  <https://www.oracle.com/java>
 - Zulu <https://www.azul.com>
+
 
 Set `java.provider = <adopt|amazon|graalvm|haikuvm|intellij|oracle|zulu>` to choose.
 

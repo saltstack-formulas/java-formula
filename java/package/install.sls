@@ -28,8 +28,8 @@ java-default-package-snap-install:
 java-default-package-homebrew-install:
   cmd.run:
     - names:
-      - brew tap caskroom/versions
-      - brew cask install java{{ j.release }}
+      - brew tap homebrew/cask-versions
+      - brew cask install adoptopenjdk/openjdk/adoptopenjdk{{ j.release }}
     - runas: {{ j.identity.rootuser }}
     - onlyif: test -x /usr/local/bin/brew
     - onfail_in:
@@ -37,7 +37,7 @@ java-default-package-homebrew-install:
 
 java-default-package-homebrew-reinstall:
   cmd.run:
-    - name: brew cask reinstall java{{ j.release }}
+    - name: brew cask reinstall adoptopenjdk/openjdk/adoptopenjdk{{ j.release }}
     - runas: {{ j.identity.rootuser }}
 
     {%- endif %}

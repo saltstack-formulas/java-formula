@@ -234,6 +234,8 @@ java:
       - curl
       - gzip
     cookieheader: ''
+    macapp: {}
+    package: {}
     archive:
       enforce_toplevel: false
       trim_output: true

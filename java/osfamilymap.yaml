@@ -72,7 +72,6 @@ RedHat:
   oracle:
     pkg:
       use_upstream_package: false
-      use_upstream_archive: true
       package:
         suffix: rpm
         source_hash: 6c5b3cfebb10618e2c2a44ae56bee034c3a8846699dfce916993bb4a58ed6eb3  # linux x64 rpm
@@ -101,25 +100,20 @@ MacOS:
     jvm: openj_macosXL    # or hotspot
     os: mac
     pkg:
-      use_upstream_macpkg: true
-      use_upstream_archive: false
+      # name: adoptopenjdk/openjdk/adoptopenjdk8  # homebrew
+      use_upstream_true: false
+      use_upstream_package: false
       archive:
         source_hash: b7fa56aa38d3478023b4e5666a514a07696c56ed945b79a9a8d8abf73db1e6e7 # jdk x64 tarball
       # source_hash: 4f4b0349d4ebfbdd58026c0db6965fd3eead2495835bb9fa9481afd6ae2b970a # jre x64 tarball
-      macpkg:
-        source_hash: c3ad41edee6559aecbd409d6a31094f6d567bed0309273a0b6f92c3fd5a35d27 # jdk x64 macpkg
-      # source_hash: 625edb162d3c074500269af6f26e97fd94c9a383b1d264c917fb410392841e4f # jre x64 macpkg
 
   amazon:
     javaversion: 8.252.09.1
     os: macosx
     pkg:
-      use_upstream_macpkg: true
       use_upstream_archive: false
       archive:
         source_hash: 4ff460eefa2d3deabfbfd967aa06da99  # jdk x64 tarball
-      macpkg:
-        source_hash: d3eb38bbc657812fb6c85b811140ff7f  # jdk x64 macpkg
 
   graalvm:
     os: darwin

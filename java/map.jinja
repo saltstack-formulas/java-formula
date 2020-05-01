@@ -76,7 +76,7 @@
      {%- if 'oracle.com/otn' in j.oracle.pkg.uri %}
                {# its an otn uri #}
             {%- set md5 = '' if 'url_md5' not in j.oracle else j.oracle.url_md5 %}
-            {%- set uri = '%s/%s%s/%s'|format(j.oracle.pkg.uri, jversion, build, md5) %}
+            {%- set uri = '%s/%s/%s'|format(j.oracle.pkg.uri, jversion, md5) %}
             {%- do j.pkg.update({'cookieheader': '-b oraclelicense=accept-securebackup-cookie'}) %}
 
      {%- else %}
@@ -130,10 +130,6 @@
        {%- do j.pkg.package.update({'source_hash': j[provider]['pkg']['package']['source_hash']}) %}
 
      {# Is there any way to install pkg files? #}
-{%- elif 'use_upstream_macpkg' in j[provider]['pkg'] and j[provider]['pkg']['use_upstream_macpkg'] %}
-       {%- do j.pkg.macpkg.update({'name': j.path }) %}
-       {%- do j.pkg.macpkg.update({'source': url ~ '.pkg' }) %}
-       {%- do j.pkg.macpkg.update({'source_hash': j[provider]['pkg']['macpkg']['source_hash']}) %}
 
 {%- endif %}
 

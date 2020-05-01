@@ -22,7 +22,7 @@ java-default-package-clean:
 
 java-default-package-homebrew-clean:
   cmd.run:
-    - name: brew cask uninstall java{{ j.release }}
+    - name: brew cask uninstall adoptopenjdk/openjdk/adoptopenjdk{{ j.release }}
     - runas: {{ j.identity.rootuser }}
     - onlyif: test -x /usr/local/bin/brew
 
