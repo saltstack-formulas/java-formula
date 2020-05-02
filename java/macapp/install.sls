@@ -23,6 +23,7 @@ java-package-macapp-download:
         - mode
   cmd.run:
     - name: curl {{ j.pkg.cookieheader }} -Lo {{ j.dir.tmp }}/java-archive.dmg {{ j.pkg.macapp.source }}
+    - hide_output: true
     - unless: test -f {{ j.pkg.macapp.name }}
     - retry: {{ j.retry_option|json }}
   module.run:
@@ -35,10 +36,10 @@ java-package-macapp-download:
       - macpackage: java-package-macapp-install
 
 java-package-macapp-install:
-  file.absent:
-    - name: {{ j.dir.tmp }}/java-archive.dmg
-    - onfail:
-      - module: java-package-macapp-download
+  #file.absent:
+  #  - name: {{ j.dir.tmp }}/java-archive.dmg
+  #  - onfail:
+  #    - module: java-package-macapp-download
   macpackage.installed:
     - name: {{ j.dir.tmp }}/java-archive.dmg
     - store: False
