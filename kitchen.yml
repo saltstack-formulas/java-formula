@@ -123,7 +123,6 @@ platforms:
       image: netmanagers/salt-2019.2-py2:arch-base-latest
       run_command: /usr/lib/systemd/systemd
 
-
 provisioner:
   name: salt_solo
   log_level: debug
