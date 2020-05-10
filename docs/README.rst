@@ -64,7 +64,7 @@ Available states
    :local:
 
 ``java``
-^^^^^^^^^^
+^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -73,33 +73,33 @@ manages Java configuration file and then
 configures the development environment.
 
 ``java.archive``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 This state will install Java from archive only.
 
 ``java.macapp``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 This state will install Java macpackage on MacOS only, if supplied by provider.
 
 ``java.package``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 This state installs default Java package supplied by OS if applicable (not recommended).
 
 ``java.config``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 This state will configure java and/or environment and has a dependency on ``java.install``
 via include list.
 
 ``java.config.linuxenv``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 This state will setup Java linux-alternatives on GNU/Linux.
 
 ``java.clean``
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -108,31 +108,31 @@ removes the configuration file and
 then uninstalls the package.
 
 ``java.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 This state will remove the configuration of Java and has a
 dependency on ``java.package.clean`` via include list.
 
 ``java.archive.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Java package and has a dependency on
 ``java.config.clean`` via include list.
 
 ``java.macapp.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 This state will remove Java mapackage and has a dependency on
 ``java.config.clean`` via include list.
 
 ``java.macapp.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 This state removes Java using OS package manager and depends on
 ``java.config.clean`` via include list.
 
 ``java.config.linuxenv.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Java linux-alternatives on GNU/Linux.
 

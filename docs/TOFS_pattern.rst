@@ -39,7 +39,7 @@ Using SaltStack is a simple and effective way to implement configuration managem
 
 To avoid this situation we can use the `pillar mechanism <http://docs.saltstack.com/en/latest/topics/pillar/>`_, which is designed to provide controlled access to data from the minions based on some selection rules. As pillar data could be easily integrated in the `Jinja <http://docs.saltstack.com/en/latest/topics/tutorials/pillar.html>`_ templates, it is a good mechanism to store values to be used in the final rendering of state files and templates.
 
-There are a variety of approaches on the usage of pillar and templates as seen in the `saltstack-formulas <https://github.com/saltstack-formulas>`_' repositories. `Some <https://github.com/saltstack-formulas/nginx-formula/pull/18>`_ `developments <https://github.com/saltstack-formulas/web-formula/pull/14>`_ stress the initial purpose of pillar data into a storage for most of the possible variables for a determined system configuration. This, in my opinion, is shifting too much load from the original template files approach. Adding up some `non-trivial Jinja <https://github.com/saltstack-formulas/nginx-formula/blob/f74254c07e188bd448eaf1c5f9c802d78c4c005e/nginx/files/default/nginx.conf>`_ code as essential part of composing the state file definitely makes SaltStack state files (hence formulas) more difficult to read. The extreme of this approach is that we could end up with a new render mechanism, implemented in Jinja, storing everything needed in pillar data to compose configurations. Additionally, we are establishing a strong dependency with the Jinja renderer.
+There are a variety of approaches on the usage of pillar and templates as seen in the `saltstack-formulas <https://github.com/saltstack-formulas>`_' repositories. `Some <https://github.com/saltstack-formulas/nginx-formula/pull/18>`_ `developments <https://github.com/saltstack-formulas/php-formula/pull/14>`_ stress the initial purpose of pillar data into a storage for most of the possible variables for a determined system configuration. This, in my opinion, is shifting too much load from the original template files approach. Adding up some `non-trivial Jinja <https://github.com/saltstack-formulas/nginx-formula/blob/f74254c07e188bd448eaf1c5f9c802d78c4c005e/nginx/files/default/nginx.conf>`_ code as essential part of composing the state file definitely makes SaltStack state files (hence formulas) more difficult to read. The extreme of this approach is that we could end up with a new render mechanism, implemented in Jinja, storing everything needed in pillar data to compose configurations. Additionally, we are establishing a strong dependency with the Jinja renderer.
 
 In opposition to the *put the code in file_roots and the data in pillars* approach, there is the *pillar as a store for a set of key-values* approach. A full-blown configuration file abstracted in pillar and jinja is complicated to develop, understand and maintain. I think a better and simpler approach is to keep a configuration file templated using just a basic (non-extensive but extensible) set of pillar values.
 
@@ -261,15 +261,15 @@ To make this work we need a ``conf.sls`` state file that takes a list of possibl
        - require:
          - pkg: Install NTP package
 
-If we want to cover the possibility of a special template for a minion identified by ``java01`` then we could have a specific template in ``/srv/saltstack/salt/ntp/files/java01/etc/ntp.conf.jinja``.
+If we want to cover the possibility of a special template for a minion identified by ``node01`` then we could have a specific template in ``/srv/saltstack/salt/ntp/files/node01/etc/ntp.conf.jinja``.
 
 .. code-block:: jinja
 
-   {#- /srv/saltstack/salt/ntp/files/java01/etc/ntp.conf.jinja #}
+   {#- /srv/saltstack/salt/ntp/files/node01/etc/ntp.conf.jinja #}
    {#- Managed by saltstack #}
    {#- Edit pillars or override this template in saltstack if you need customization #}
 
-   {#- Some crazy configurations here for java01 #}
+   {#- Some crazy configurations here for node01 #}
    {#- ... #}
 
 To make this work we could write a specially crafted ``conf.sls``.

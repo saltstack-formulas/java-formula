@@ -16,6 +16,7 @@ ignore: |
   java/osfamilymap.yaml
   java/osfingermap.yaml
   pillar.example
+
 yaml-files:
   # Default settings
   - '*.yaml'
