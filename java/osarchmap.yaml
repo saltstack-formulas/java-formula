@@ -1,0 +1,65 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Setup variables using grains['osarch'] based logic.
+# You just need to add the key:values for an `osarch` that differ
+# from `defaults.yaml`.
+# Only add an `osarch` which is/will be supported by the formula.
+#
+# If you do not need to provide defaults via the `osarch` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# osarch: {}
+---
+aarch64:
+  arch: aarch64
+
+amd64:
+  arch: x64
+
+arm32:
+  arch: arm32
+
+arm64:
+  arch: arm64-vfp-hflt
+
+armv6l:
+  arch: arm64-vfp-hflt
+
+armv7l:
+  arch: arm64-vfp-hflt
+
+x86_64:
+  arch: x64
+
+i586:
+  arch: i586
+
+i686:
+  arch: i586
+
+i786:
+  arch: i586
+
+ppc64:
+  arch: ppc64
+
+ppc64le:
+  arch: ppc64le
+
+s390x:
+  arch: s390x
+
+sun4u:
+  arch: sparcv9
+
+sparc:
+  arch: sparcv9
+
+sparc9:
+  arch: sparcv9
+
+x64:
+  arch: x64
+
+x86:
+  arch: x86

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name={{ appname }}{{ ' %sE'|format(edition) if edition else '' }}
+Comment={{ appname }}{{ ' %sE'|format(edition) if edition else '' }}
+Icon={{ path }}/{{ command.split('.')[0] }}.png
+Exec={{ path }}/{{ command }}
+Terminal=false
+Type=Application

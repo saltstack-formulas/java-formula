@@ -1,0 +1,134 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- import_yaml tplroot ~ "/defaults.yaml" as default_settings %}
+{%- import_yaml tplroot ~ "/osfamilymap.yaml" as osfamilymap %}
+{%- import_yaml tplroot ~ "/osarchmap.yaml" as osarchmap %}
+{%- import_yaml tplroot ~ "/oskernelmap.yaml" as oskernelmap %}
+
+{%- set _config = salt['config.get'](tplroot, default={}) %}
+{%- set defaults = salt['grains.filter_by'](
+      default_settings,
+      default=tplroot,
+      merge=salt['grains.filter_by']( osfamilymap, grain='os_family',
+        merge=salt['grains.filter_by']( osarchmap, grain='osarch',
+          merge=salt['grains.filter_by']( oskernelmap, grain='kernel',
+            merge=salt['grains.filter_by']( _config, default='lookup'
+            )
+          )
+        )
+      )
+    )
+%}
+{%- set j = salt['grains.filter_by']( {'defaults': defaults}, default='defaults', merge=_config) %}
+{%- set provider = j.provider|string %}
+{%- set suffix = '.tar.gz' %}
+
+{%- if 'adopt' in provider|lower %}
+    {%- set jversion = '8u252-b09_openj9-0.20.0' if 'javaversion' not in j.adopt else j.adopt.javaversion|replace('8u', j.release ~ 'u') %}  # noqa 204
+    {%- set name = j.adopt.pkg.name|replace('8U', j.release ~ 'U') %}
+    {%- set jvm = 'hotspot' if 'jvm' not in j.adopt else j.adopt.jvm %}
+    {%- set uri = '%s%s/%s_%s_%s_%s'|format(j.adopt.pkg.uri, jversion, name, j.arch, j.adopt.os, jvm) %}
+    {%- set url = '%s_%s'|format(uri, jversion|replace('-','',1)) %}
+    {%- set name = 'adoptopenjdk-%s%s'|format(j.release, '-' ~ j.adopt.jvm if 'openj9' in jvm else '') %}
+
+{%- elif 'amazon' in provider|lower %}
+ {%- set jversion = '8.242.08.1' if 'javaversion' not in j.amazon else j.amazon.javaversion|replace('^8', j.release) %}
+    {%- set version = jversion if 'version' not in j.amazon else j.amazon.version %}
+    {%- set jversion = jversion or version %}
+    {%- set name = j.amazon.pkg.name %}
+    {%- set uri = j.amazon.pkg.uri %}
+    {%- set url = '{0}/{1}/{2}-{1}-{3}-{4}'.format(uri, jversion, name, j.amazon.os, j.arch) %}
+
+{%- elif 'graalvm' in provider|lower %}
+    {%- set jversion = '20.0.0' if 'javaversion' not in j.graalvm else j.graalvm.javaversion %}
+    {%- set version = jversion if 'version' not in j.graalvm else j.graalvm.version %}
+    {%- set name = j.graalvm.pkg.name|replace('8', j.release) %}  {# ensure name matches release #}
+    {%- set uri = j.graalvm.pkg.uri %}
+    {%- set arch = 'amd64' if j.arch|lower == 'x64' else j.arch %}
+    {%- set url = '{0}/vm-{1}/{2}-{3}-{4}-{1}'.format(uri, jversion, name, j.graalvm.os, arch) %}
+
+{%- elif 'haikuvm' in provider|lower %}
+    {%- set version = '1.4.3' if 'version' not in j.haikuvm else j.haikuvm.version %}
+    {%- set jversion = j.haikuvm.version %}
+    {%- set name = j.haikuvm.pkg.name %}
+    {%- set url = '%s/%s'|format(j.haikuvm.pkg.uri, version) %}
+
+{%- elif 'intellij' in provider|lower %}
+    {%- set jversion = '8u202b1491' if 'javaversion' not in j.intellij else j.intellij.javaversion %}
+    {%- set jbuild = '' if jversion.split('-')|length < 2 else jversion.split('-')[1] %}
+    {%- set name = j.intellij.pkg.name %}
+
+    {%- set url = '%s/%s-%s-%s-%s%s'|format(j.intellij.pkg.uri, name, jversion, j.intellij.os, j.arch, jbuild) %}
+    {%- if j.release|int <= 8 %}
+          {%- set url = '%s/%s%s_%s_%s'|format(j.intellij.pkg.uri, name, jversion, j.intellij.os, j.arch) %}
+    {%- endif %}
+    {%- set name = 'jre' if j.intellij.pkg.name == 'jbsdk' else 'jdk' %}
+
+{%- elif 'oracle' in provider|lower %}
+     {%- set jversion = j.oracle.javaversion %}
+     {%- set jshortversion = jversion.split('-')[0].split('+')[0] %}
+     {%- set name = j.oracle.pkg.name %}
+     {%- set suffix = '_bin' if j.release|int > 8 else '' %}
+
+     {%- if 'oracle.com/otn' in j.oracle.pkg.uri %}
+            {%- set md5 = '' if 'url_md5' not in j.oracle else j.oracle.url_md5 %}
+            {%- set uri = '%s/%s/%s'|format(j.oracle.pkg.uri, jversion, md5) %}
+            {%- do j.pkg.update({'cookieheader': '-b oraclelicense=accept-securebackup-cookie'}) %}
+
+     {%- else %}
+            {%- set uri = j.oracle.pkg.uri %}   {# non-oracle uri #}
+     {%- endif %}
+     {%- set url = '%s/%s-%s-%s-%s%s'|format(uri, name, jshortversion, j.oracle.os, j.arch, suffix) %}
+     {%- if j.release|int > 8 %}
+            {%- set url = '%s/%s-%s_%s-%s%s'|format(uri, name, jshortversion, j.oracle.os, j.arch, suffix) %}
+     {%- endif %}
+
+     {# JDK9 and later already ship unlimited policy files. #}
+     {%- set jce_url = '' %}
+     {%- if j.release|int == 8 %}
+            {%- set jce_url = '{0}/jce/{1}/jce_policy-{1}.zip'.format(uri, j.release) %}
+            {%- do j.pkg.update({ 'jce_source': jce_url }) %}
+            {%- do j.pkg.update({ 'jce_source_hash': j.oracle.pkg.jce.source_hash }) %}
+     {%- endif %}
+
+{%- elif 'zulu' in provider|lower %}
+     {%- set jversion = '' if 'javaversion' not in j.zulu else j.zulu.javaversion %}
+     {%- set version = '' if 'version' not in j.zulu else j.zulu.version %}
+     {%- set name = j.zulu.pkg.name %}
+     {%- set uri = j.zulu.pkg.uri %}
+     {%- set url = '%s/%s%s%s-%s_%s'|format(uri, name, version, jversion, j.zulu.os, j.arch) %}
+
+{%- endif %}
+
+#### MAIN SECTION ####
+
+{%- do j.update({ 'path': j.dir.javahome ~ '/' ~ name ~ '-' ~ jversion }) %}
+{%- do j.dir.update({ 'security': j.path ~ '/' ~ j.dir.security }) %}
+{%- do j.update({ 'commands': ['java', 'javac']}) %}
+{%- if 'commands' in j[provider] and j[provider]['commands'] %}
+       {%- do j.update({ 'commands': j[provider]['commands'] }) %}
+{%- endif %}
+
+{%- if 'use_upstream_archive' in j[provider]['pkg'] and j[provider]['pkg']['use_upstream_archive'] %}
+       {%- do j.pkg.archive.update({'name': j.path }) %}
+       {%- do j.pkg.archive.update({'source': url ~ '.tar.gz'}) %}
+       {%- do j.pkg.archive.update({'source_hash': j[provider]['pkg']['archive']['source_hash']}) %}
+
+{%- elif 'use_upstream_macapp' in j[provider]['pkg'] and j[provider]['pkg']['use_upstream_macapp'] %}
+       {%- do j.pkg.macapp.update({'name': j.path }) %}
+       {%- do j.pkg.macapp.update({'source': url ~ '.dmg' }) %}
+       {%- do j.pkg.macapp.update({'source_hash': j[provider]['pkg']['macapp']['source_hash']}) %}
+
+{%- elif 'use_upstream_package' in j[provider]['pkg'] and j[provider]['pkg']['use_upstream_package'] %}
+       {%- do j.pkg.package.update({'name': j.path }) %}
+       {%- do j.pkg.package.update({'source': url ~ '.pkg' }) %}
+       {%- do j.pkg.package.update({'source_hash': j[provider]['pkg']['package']['source_hash']}) %}
+
+     {# Is there any way to install pkg files? #}
+
+{%- endif %}
+
+# EXPORT DICT
+{%- set java = j %}

@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+java:
+  release: 8
+  provider: adopt
+  environ:
+    a: b
+
+  adopt:
+    # https://adoptopenjdk.net/releases.html, https://www.eclipse.org/openj9
+    javaversion: 8u252-b09_openj9-0.20.0   # or hotspot jdk8u252-b09 or whatever
+    jvm: openj9    # or hotspot
+    pkg:
+      name: OpenJDK8U-jdk   # or -jre
+      archive:
+        source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5  # jdk
+        # source_hash: 5c0ab4691ff5f8e69bb14462f2afb8d73d751b01048eacf4b426ed6d6646dc63  # jre
+
+  amazon:
+    # https://aws.amazon.com/corretto, Hotspot-based vm
+    javaversion: 8.242.08.1
+      archive:
+        source_hash: 3a614a0e32aa5324843781d1077aad7a   # linux x64 jdk
+
+  graalvm:
+    # https://www.graalvm.org
+    version: 20.0.0
+    pkg:
+      archive:
+        source_hash: 16ef8d89f014b4d295b7ca0c54343eab3c7d24e18b2d376665f5b12bb643723d
+
+  haikuvm:
+    # https://github.com/chuckb/haikuVM
+    # A small Java Virtual Machine targeting Arduino compatible microcontrollers.
+    version: 1.4.3
+
+  intellij:
+    # https://bintray.com/jetbrains/intellij-jdk/openjdk8-linux-x64
+    javaversion: 8u202b1491  # or say 11_0_4-b546 or whatever
+    pkg:
+      archive:
+        source_hash: 7c2d8a3cb0e7c6b35ea668f346429476b95929dd369b5336a70030490aeab768 #jbsdk jre
+
+  oracle:
+    # https://www.oracle.com/java/technologies/javase-downloads.html
+    # https://www.oracle.com/webfolder/s/digest/8u251checksum.html
+    javaversion: 8u251-b08  # or say 11.0.7+8 or whatever
+    url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784  # needed for oracle.com/otn urls
+    pkg:
+      name: jdk  # or jre
+      uri: http://example.com/downloads    # not https://download.oracle.com/otn-pub/java
+
+             {%- if grains.kernel|lower == 'linux' %}
+      archive:
+        source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e  # jdk linux
+        # source_hash: 92fc256da54af798dc34aeab837df816577f2c46dd111f9f94058c186d36f589  # jre linux
+
+             {%- elif grains.kernel|lower == 'macos' %}
+      use_upstream_macapp: true
+      use_upstream_archive: false
+      archive:
+        source_hash: b41367948cf99ca0b8d1571f116b7e3e322dd1ebdfd4d390e959164d75b97c20  # jdk x64 tarball
+      # source_hash: 671594b665c40ecaf22361322fbf7ca893a63ad7ef698d1482ee03e26ab85aaa  # jre x64 tarball
+      macapp:
+        source_hash: eef71e68ce9c2c7e3d7e910616e555b219cdd98f4fa59709279a40b639f1d212  # jdk x64 macapp
+      # source_hash: 32322f6401d70b54de2370cbd5597dbcd06c12293722b38551face88aba3ac99  # jre x64 macapp
+             {%- endif %}
+      jce:
+        source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59 # jdk mac
+
+  zulu:
+    # https://www.azul.com/downloads/zulu-community/?architecture=x86-64-bit&package=jdk
+    version: 8.46.0.19-ca-jdk   # zulu version
+    javaversion: 8.0.252        # or say 14.0.1
+    pkg:
+      archive:
+        source_hash: ab8a4194006f12dd48bf7f176ca7879706d3f8fc7d3208313a46cc9ee2270716
+
+  # details for CA certificates installation
+  security:
+    cacert:
+      keystore:
+        password: changeit
+
+  cacert_keystore_password: 'changeit' ## passwort for keystore (default changeit)
+  cacert_keystore: jre_lib_sec + '/cacerts' ## location of store for ca serts
+  keytool_cmd: java_real_home + '/bin/keytool' ## location of keytool
+  cacert: ## list of certs to install
+    - alias: own-ca-cert-1 ## CA alias
+      source: https://my-ca.com/cert.crt ## location on CA cert (for file.managed)
+      source_hash: ## optional source hash on downloads
+      # Fingerptint for CA cert (needed to get information if it is already installed)
+      fingeprint: 49:72:74:18:6A:54:91:19:12:BF:09:BD:F6:F1:67:E7:30:47:3E:88
+    - alias: own-ca-cert-2
+      source: salt://own-ca-cert-2
+      fingeprint: 49:72:74:18:6A:54:91:19:12:BF:09:BD:F6:F1:67:E7:30:47:3E:89
+
+  dir:
+    javahome: /usr/local/lib/java
+
+  identity:
+    rootuser: root
+    rootgroup: root
+    user: undefined_user
+
+  linux:
+    altpriority: 1000
