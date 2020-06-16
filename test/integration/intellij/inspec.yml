@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-name: default
+name: intellij
 title: java formula
 maintainer: SaltStack Formulas
 license: Apache-2.0
-summary: Verify that the java formula is setup and configured correctly
+summary: Verify that the formula is setup and configured correctly
 supports:
   - platform-name: debian
   - platform-name: ubuntu

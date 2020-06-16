@@ -12,7 +12,9 @@ control 'java archive' do
   describe directory('/usr/lib/jvm/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0') do
     it { should exist }
   end
-  describe file('/usr/lib/jvm/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0/bin/java') do
+  describe file(
+    '/usr/lib/jvm/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0/bin/java'
+  ) do
     it { should exist }
   end
   describe file('/etc/default/java.sh') do

@@ -37,7 +37,9 @@ java:
       uri: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk
       archive:
         strip_components: 1
+        # yamllint disable-line rule:line-length
         source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5  # jdk
+        # yamllint disable-line rule:line-length
         # source_hash: 5c0ab4691ff5f8e69bb14462f2afb8d73d751b01048eacf4b426ed6d6646dc63  # jre
 
   amazon:
@@ -158,7 +160,9 @@ java:
       uri: https://jetbrains.bintray.com/intellij-jdk
       archive:
         strip_components: 0
+        # yamllint disable-line rule:line-length
         source_hash: 7c2d8a3cb0e7c6b35ea668f346429476b95929dd369b5336a70030490aeab768  # linux
+        # yamllint disable-line rule:line-length
         # source_hash: 4d00c0db25ca5e43970af68198b0086befd68da69dcab645790c402e63a1494b  # mac
 
   oracle:
@@ -189,9 +193,12 @@ java:
       uri: http://download.oracle.com/otn-pub/java
       archive:
         strip_components: 1
+        # yamllint disable-line rule:line-length
         source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e    # jdk
+        # yamllint disable-line rule:line-length
         # source_hash: 92fc256da54af798dc34aeab837df816577f2c46dd111f9f94058c186d36f589  # jre
       jce:
+        # yamllint disable-line rule:line-length
         source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59  # zip
 
   zulu:
