@@ -2,6 +2,21 @@
 Changelog
 =========
 
+`1.0.1 <https://github.com/saltstack-formulas/java-formula/compare/v1.0.0...v1.0.1>`_ (2020-07-24)
+------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **bandwidth:** only download if not installed (\ `3c2d6e4 <https://github.com/saltstack-formulas/java-formula/commit/3c2d6e4c6ecec6571c8088d3c0161920eea7fc31>`_\ )
+
+Styles
+^^^^^^
+
+
+* **libtofs.jinja:** use Black-inspired Jinja formatting [skip ci] (\ `5267d7d <https://github.com/saltstack-formulas/java-formula/commit/5267d7d578c3344406f3060bcc435f99b65ada0d>`_\ )
+
 `1.0.0 <https://github.com/saltstack-formulas/java-formula/compare/v0.1.0...v1.0.0>`_ (2020-06-16)
 ------------------------------------------------------------------------------------------------------
 
