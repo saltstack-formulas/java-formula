@@ -24,7 +24,9 @@ java-package-macapp-download:
   cmd.run:
     - name: curl {{ j.pkg.cookieheader }} -Lo {{ j.dir.tmp }}/java-archive.dmg {{ j.pkg.macapp.source }}
     - hide_output: true
-    - unless: test -f {{ j.pkg.macapp.name }}
+    - unless:
+      - test -f {{ j.pkg.macapp.name }}
+      - test -x {{ j.path }}/{{ '.jdk/Contents/Home/bin' if j[j.provider]['pkg']['use_upstream_macapp'] else 'bin' }}/java  # noqa 204
     - retry: {{ j.retry_option|json }}
   module.run:
     - name: file.check_hash
@@ -47,6 +49,8 @@ java-package-macapp-install:
     - app: False
     - force: True
     - allow_untrusted: True
+    - onchanges:
+      - cmd: java-package-macapp-download
 
     {%- if grains.os_family in ('MacOS') and j.commands %}
            {%- for cmd in j.commands %}

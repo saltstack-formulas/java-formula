@@ -23,8 +23,10 @@ java-package-archive-install:
         - mode
   cmd.run:
     - name: curl {{ j.pkg.cookieheader }} -Lo {{ j.dir.tmp }}/java-archive.tar.gz {{ j.pkg.archive.source }}
-    - unless: test -f {{ j.dir.tmp }}/java-archive.tar.gz
     - retry: {{ j.retry_option|json }}
+    - unless:
+      - test -f {{ j.dir.tmp }}/java-archive.tar.gz
+      - test -x {{ j.pkg.archive.name }}/{{ '.jdk/Contents/Home/bin' if grains.os == 'MacOS' else 'bin' }}/java  # noqa 204
   archive.extracted:
     - name: {{ j.path }}/
     - source: file://{{ j.dir.tmp }}/java-archive.tar.gz
@@ -35,6 +37,8 @@ java-package-archive-install:
     - options: "--strip-components={{ j[j.provider]['pkg']['archive']['strip_components'] }}"
     - user: {{ j.identity.rootuser }}
     - group: {{ j.identity.rootgroup }}
+    - onchanges:
+      - cmd: java-package-archive-install
     - require:
       - cmd: java-package-archive-install
 
