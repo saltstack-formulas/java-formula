@@ -9,12 +9,13 @@ java:
 
   adopt:
     # https://adoptopenjdk.net/releases.html, https://www.eclipse.org/openj9
-    javaversion: 8u252-b09_openj9-0.20.0   # or hotspot jdk8u252-b09 or whatever
+    javaversion: 8u252-b09_openj9-0.20.0   # or hotspot 8u252-b09 or whatever
     jvm: openj9    # or hotspot
     pkg:
       name: OpenJDK8U-jdk   # or -jre
       archive:
-        source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5  # jdk
+        source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5  # jdk linux
+        source_hash: 6e267893aae127a4bccfedb56d9893a891213a93de593a97f248629eaa0594ba  # jdk mac hotspot 8u252-b09 jdk
         # source_hash: 5c0ab4691ff5f8e69bb14462f2afb8d73d751b01048eacf4b426ed6d6646dc63  # jre
 
   amazon:
