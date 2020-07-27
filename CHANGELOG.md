@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/saltstack-formulas/java-formula/compare/v1.0.1...v1.0.2) (2020-07-27)
+
+
+### Documentation
+
+* **example:** use correct version in comment ([e1f2de8](https://github.com/saltstack-formulas/java-formula/commit/e1f2de84ef6233dd08f0df3f8e4feccf5db56524))
+
 ## [1.0.1](https://github.com/saltstack-formulas/java-formula/compare/v1.0.0...v1.0.1) (2020-07-24)
 
 
