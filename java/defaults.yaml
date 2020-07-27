@@ -20,7 +20,7 @@ java:
 
   adopt:
     # https://adoptopenjdk.net/releases.html, https://www.eclipse.org/openj9
-    javaversion: 8u252-b09_openj9-0.20.0   # or say jdk8u252-b09 (hotspot)
+    javaversion: 8u252-b09_openj9-0.20.0   # or say 8u252-b09 (hotspot)
     jvm: openj9    # or hotspot
     os: linux
     commands:
