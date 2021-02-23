@@ -310,6 +310,7 @@ suites:
       state_top:
         base:
           '*':
+            - java._mapdata
             - java
       pillars:
         top.sls:
@@ -326,6 +327,7 @@ suites:
       state_top:
         base:
           '*':
+            - java._mapdata
             - java
       pillars:
         top.sls:
@@ -342,6 +344,7 @@ suites:
       state_top:
         base:
           '*':
+            - java._mapdata
             - java
       pillars:
         top.sls:
@@ -358,6 +361,7 @@ suites:
       state_top:
         base:
           '*':
+            - java._mapdata
             - java
       pillars:
         top.sls:
@@ -374,6 +378,7 @@ suites:
       state_top:
         base:
           '*':
+            - java._mapdata
             - java
       pillars:
         top.sls:
@@ -390,6 +395,7 @@ suites:
       state_top:
         base:
           '*':
+            - java._mapdata
             - java
       pillars:
         top.sls:
@@ -406,6 +412,7 @@ suites:
       state_top:
         base:
           '*':
+            - java._mapdata
             - java
       pillars:
         top.sls:
