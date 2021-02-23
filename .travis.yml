@@ -83,19 +83,40 @@ jobs:
     ## Define the rest of the matrix based on Kitchen testing
     # Make sure the instances listed below match up with
     # the `platforms` defined in `kitchen.yml`
-    # - env: INSTANCE=adopt-debian-10-master-py3
-    # - env: INSTANCE=adopt-ubuntu-2004-master-py3
+    # - env: INSTANCE=adopt-ubuntu-2004-tiamat-py3
+    # - env: INSTANCE=adopt-ubuntu-1804-tiamat-py3
+    # - env: INSTANCE=adopt-ubuntu-1604-tiamat-py3
+    - env: INSTANCE=adopt-ubuntu-2004-master-py3
+    - env: INSTANCE=amazon-ubuntu-2004-master-py3
+    - env: INSTANCE=graalvm-ubuntu-2004-master-py3
+    - env: INSTANCE=haikuvm-ubuntu-2004-master-py3
+    - env: INSTANCE=intellij-ubuntu-2004-master-py3
+    # - env: INSTANCE=oracle-ubuntu-2004-master-py3
+    - env: INSTANCE=zulu-ubuntu-2004-master-py3
     - env: INSTANCE=adopt-ubuntu-1804-master-py3
     - env: INSTANCE=amazon-ubuntu-1804-master-py3
     - env: INSTANCE=graalvm-ubuntu-1804-master-py3
     - env: INSTANCE=haikuvm-ubuntu-1804-master-py3
     - env: INSTANCE=intellij-ubuntu-1804-master-py3
+    # - env: INSTANCE=oracle-ubuntu-1804-master-py3
     - env: INSTANCE=zulu-ubuntu-1804-master-py3
-    # - env: INSTANCE=adopt-centos-8-master-py3
-    # - env: INSTANCE=adopt-fedora-32-master-py3
-    # - env: INSTANCE=adopt-fedora-31-master-py3
-    # - env: INSTANCE=adopt-opensuse-leap-152-master-py3
-    # - env: INSTANCE=adopt-amazonlinux-2-master-py3
+    - env: INSTANCE=adopt-ubuntu-1604-master-py3
+    - env: INSTANCE=amazon-ubuntu-1604-master-py3
+    - env: INSTANCE=graalvm-ubuntu-1604-master-py3
+    - env: INSTANCE=haikuvm-ubuntu-1604-master-py3
+    - env: INSTANCE=intellij-ubuntu-1604-master-py3
+    # - env: INSTANCE=oracle-ubuntu-1604-master-py3
+    - env: INSTANCE=zulu-ubuntu-1604-master-py3
+    # - env: INSTANCE=adopt-ubuntu-2004-3002-2-py3
+    # - env: INSTANCE=adopt-ubuntu-1804-3002-2-py3
+    # - env: INSTANCE=adopt-ubuntu-1604-3002-2-py3
+    # - env: INSTANCE=adopt-ubuntu-2004-3001-4-py3
+    # - env: INSTANCE=adopt-ubuntu-1804-3001-4-py3
+    # - env: INSTANCE=adopt-ubuntu-1604-3001-4-py3
+    # - env: INSTANCE=adopt-ubuntu-1804-3000-6-py3
+    # - env: INSTANCE=adopt-ubuntu-1604-3000-6-py3
+    # - env: INSTANCE=adopt-ubuntu-1804-3000-6-py2
+    # - env: INSTANCE=adopt-ubuntu-1604-3000-6-py2
 
     ## Define the release stage that runs `semantic-release`
     - stage: 'release'
