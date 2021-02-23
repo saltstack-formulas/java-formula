@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.0.3](https://github.com/saltstack-formulas/java-formula/compare/v1.0.2...v1.0.3) (2021-02-23)
+
+
+### Bug Fixes
+
+* **inspec:** `mapdata` reference files can use all YAML features ([f9ca0e2](https://github.com/saltstack-formulas/java-formula/commit/f9ca0e2c245c61cd9c4e532efc91745f34e5337f)), closes [/github.com/ruby/psych/blob/d4861854/lib/psych.rb#L317](https://github.com//github.com/ruby/psych/blob/d4861854/lib/psych.rb/issues/L317) [/github.com/inspec/inspec/blob/a5309ea/lib/inspec/resources/yaml.rb#L29](https://github.com//github.com/inspec/inspec/blob/a5309ea/lib/inspec/resources/yaml.rb/issues/L29)
+
+
+### Continuous Integration
+
+* **commitlint:** ensure `upstream/master` uses main repo URL [skip ci] ([8ccf1ca](https://github.com/saltstack-formulas/java-formula/commit/8ccf1ca8f4f0aeff8da2a188b1f344dbfe1a0e24))
+* **gemfile+lock:** use `ssf` customised `kitchen-docker` repo [skip ci] ([eff3fc0](https://github.com/saltstack-formulas/java-formula/commit/eff3fc0612cb11e7267661a3c4c1975c70c38681))
+* **gitlab-ci:** add `rubocop` linter (with `allow_failure`) [skip ci] ([c8b0429](https://github.com/saltstack-formulas/java-formula/commit/c8b042952214fdf2ad3dc08c741deb216594d775))
+* **gitlab-ci:** fix commented out `lint` section ([ebd1a6a](https://github.com/saltstack-formulas/java-formula/commit/ebd1a6a3a32561b41520d5d11acf30cc14127f91))
+* **gitlab-ci:** use GitLab CI as Travis CI replacement ([b22ced5](https://github.com/saltstack-formulas/java-formula/commit/b22ced5b4174b4224b992aab7486ff3081769738))
+* **kitchen+gitlab-ci:** reintroduce all platforms [skip ci] ([2ca0ca4](https://github.com/saltstack-formulas/java-formula/commit/2ca0ca4e9dcc89d5f449208700839079ff72b5af))
+* **kitchen+gitlab-ci:** use latest pre-salted images [skip ci] ([1c9a870](https://github.com/saltstack-formulas/java-formula/commit/1c9a870e9f44bfb22e96b7adf2ab5c74b1973150))
+* **pre-commit:** add to formula [skip ci] ([8592ca9](https://github.com/saltstack-formulas/java-formula/commit/8592ca9c838e6c038529a7f2f4abd96878d1b34f))
+* **pre-commit:** enable/disable `rstcheck` as relevant [skip ci] ([76ecee5](https://github.com/saltstack-formulas/java-formula/commit/76ecee5e1e84f3d2f5f990df50bd8366e3168863))
+* **pre-commit:** finalise `rstcheck` configuration [skip ci] ([701904a](https://github.com/saltstack-formulas/java-formula/commit/701904ac47b9b04e91092c878b2df74455201256))
+* **pre-commit:** update hook for `rubocop` [skip ci] ([e97c854](https://github.com/saltstack-formulas/java-formula/commit/e97c8542db61c522d551bcf7ae330312764c3e42))
+
+
+### Tests
+
+* **map:** dump `mapdata` content ([3f5ff5c](https://github.com/saltstack-formulas/java-formula/commit/3f5ff5c5134430d3d3ab5bd8ae402a4c5fa372ec))
+* **map:** verify `mapdata` dump against reference files ([ce6dc5a](https://github.com/saltstack-formulas/java-formula/commit/ce6dc5a7b2997b6ef6192062e32d798075f0c010))
+
 ## [1.0.2](https://github.com/saltstack-formulas/java-formula/compare/v1.0.1...v1.0.2) (2020-07-27)
 
 
