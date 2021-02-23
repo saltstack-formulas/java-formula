@@ -45,59 +45,59 @@ stages:
 variables:
   DOCKER_DRIVER: 'overlay2'
 
-###############################################################################
-# `lint` stage: `commitlint` & `pre-commit`
-###############################################################################
-commitlint:
-  stage: *stage_lint
-  image: *image_commitlint
-  script:
-    # Add `upstream` remote to get access to `upstream/master`
-    - 'git remote add upstream
-       https://gitlab.com/saltstack-formulas/java-formula.git'
-    - 'git fetch --all'
-    # Set default commit hashes for `--from` and `--to`
-    - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
-    - 'export COMMITLINT_TO="${CI_COMMIT_SHA}"'
-    # `coqbot` adds a merge commit to test PRs on top of the latest commit in
-    # the repo; amend this merge commit message to avoid failure
-    - |
-      if [ "${GITLAB_USER_LOGIN}" = "coqbot" ] \
-      && [ "${CI_COMMIT_BRANCH}" != "master" ]; then
-        git commit --amend -m \
-          'chore: reword coqbot merge commit message for commitlint'
-        export COMMITLINT_TO=HEAD
-      fi
-    # Run `commitlint`
-    - 'commitlint --from "${COMMITLINT_FROM}"
-                  --to   "${COMMITLINT_TO}"
-                  --verbose'
-
-pre-commit:
-  stage: *stage_lint
-  image: *image_precommit
-  # https://pre-commit.com/#gitlab-ci-example
-  variables:
-    PRE_COMMIT_HOME: '${CI_PROJECT_DIR}/.cache/pre-commit'
-  cache:
-    key: '${CI_JOB_NAME}'
-    paths:
-      - '${PRE_COMMIT_HOME}'
-  script:
-    - 'pre-commit run --all-files --color always --verbose'
-
-# Use a separate job for `rubocop` other than the one potentially run by `pre-commit`
-# - The `pre-commit` check will only be available for formulas that pass the default
-#   `rubocop` check -- and must continue to do so
-# - This job is allowed to fail, so can be used for all formulas
-# - Furthermore, this job uses all of the latest `rubocop` features & cops,
-#   which will help when upgrading the `rubocop` linter used in `pre-commit`
-rubocop:
-  allow_failure: true
-  stage: *stage_lint
-  image: *image_rubocop
-  script:
-    - 'rubocop -d -P -S --enable-pending-cops'
+# ###############################################################################
+# # `lint` stage: `commitlint` & `pre-commit`
+# ###############################################################################
+# commitlint:
+#   stage: *stage_lint
+#   image: *image_commitlint
+#   script:
+#     # Add `upstream` remote to get access to `upstream/master`
+#     - 'git remote add upstream
+#        https://gitlab.com/saltstack-formulas/java-formula.git'
+#     - 'git fetch --all'
+#     # Set default commit hashes for `--from` and `--to`
+#     - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
+#     - 'export COMMITLINT_TO="${CI_COMMIT_SHA}"'
+#     # `coqbot` adds a merge commit to test PRs on top of the latest commit in
+#     # the repo; amend this merge commit message to avoid failure
+#     - |
+#       if [ "${GITLAB_USER_LOGIN}" = "coqbot" ] \
+#       && [ "${CI_COMMIT_BRANCH}" != "master" ]; then
+#         git commit --amend -m \
+#           'chore: reword coqbot merge commit message for commitlint'
+#         export COMMITLINT_TO=HEAD
+#       fi
+#     # Run `commitlint`
+#     - 'commitlint --from "${COMMITLINT_FROM}"
+#                   --to   "${COMMITLINT_TO}"
+#                   --verbose'
+#
+# pre-commit:
+#   stage: *stage_lint
+#   image: *image_precommit
+#   # https://pre-commit.com/#gitlab-ci-example
+#   variables:
+#     PRE_COMMIT_HOME: '${CI_PROJECT_DIR}/.cache/pre-commit'
+#   cache:
+#     key: '${CI_JOB_NAME}'
+#     paths:
+#       - '${PRE_COMMIT_HOME}'
+#   script:
+#     - 'pre-commit run --all-files --color always --verbose'
+#
+# # Use a separate job for `rubocop` other than the one potentially run by `pre-commit`
+# # - The `pre-commit` check will only be available for formulas that pass the default
+# #   `rubocop` check -- and must continue to do so
+# # - This job is allowed to fail, so can be used for all formulas
+# # - Furthermore, this job uses all of the latest `rubocop` features & cops,
+# #   which will help when upgrading the `rubocop` linter used in `pre-commit`
+# rubocop:
+#   allow_failure: true
+#   stage: *stage_lint
+#   image: *image_rubocop
+#   script:
+#     - 'rubocop -d -P -S --enable-pending-cops'
 
 ###############################################################################
 # Define `test` template
@@ -123,9 +123,30 @@ rubocop:
 ## Define the rest of the matrix based on Kitchen testing
 # Make sure the instances listed below match up with
 # the `platforms` defined in `kitchen.yml`
+# adopt-debian-10-tiamat-py3: {extends: '.test_instance'}
+# adopt-debian-9-tiamat-py3: {extends: '.test_instance'}
 # adopt-ubuntu-2004-tiamat-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-tiamat-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1604-tiamat-py3: {extends: '.test_instance'}
+# adopt-centos-8-tiamat-py3: {extends: '.test_instance'}
+# adopt-centos-7-tiamat-py3: {extends: '.test_instance'}
+# adopt-amazonlinux-2-tiamat-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-8-tiamat-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-7-tiamat-py3: {extends: '.test_instance'}
+# adopt-debian-10-master-py3: {extends: '.test_instance'}
+# amazon-debian-10-master-py3: {extends: '.test_instance'}
+# graalvm-debian-10-master-py3: {extends: '.test_instance'}
+# haikuvm-debian-10-master-py3: {extends: '.test_instance'}
+# intellij-debian-10-master-py3: {extends: '.test_instance'}
+# oracle-debian-10-master-py3: {extends: '.test_instance'}
+# zulu-debian-10-master-py3: {extends: '.test_instance'}
+# adopt-debian-9-master-py3: {extends: '.test_instance'}
+# amazon-debian-9-master-py3: {extends: '.test_instance'}
+# graalvm-debian-9-master-py3: {extends: '.test_instance'}
+# haikuvm-debian-9-master-py3: {extends: '.test_instance'}
+# intellij-debian-9-master-py3: {extends: '.test_instance'}
+# oracle-debian-9-master-py3: {extends: '.test_instance'}
+# zulu-debian-9-master-py3: {extends: '.test_instance'}
 adopt-ubuntu-2004-master-py3: {extends: '.test_instance'}
 amazon-ubuntu-2004-master-py3: {extends: '.test_instance'}
 graalvm-ubuntu-2004-master-py3: {extends: '.test_instance'}
@@ -147,16 +168,132 @@ haikuvm-ubuntu-1604-master-py3: {extends: '.test_instance'}
 intellij-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # oracle-ubuntu-1604-master-py3: {extends: '.test_instance'}
 zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
+# adopt-centos-8-master-py3: {extends: '.test_instance'}
+# amazon-centos-8-master-py3: {extends: '.test_instance'}
+# graalvm-centos-8-master-py3: {extends: '.test_instance'}
+# haikuvm-centos-8-master-py3: {extends: '.test_instance'}
+# intellij-centos-8-master-py3: {extends: '.test_instance'}
+# oracle-centos-8-master-py3: {extends: '.test_instance'}
+# zulu-centos-8-master-py3: {extends: '.test_instance'}
+# adopt-centos-7-master-py3: {extends: '.test_instance'}
+# amazon-centos-7-master-py3: {extends: '.test_instance'}
+# graalvm-centos-7-master-py3: {extends: '.test_instance'}
+# haikuvm-centos-7-master-py3: {extends: '.test_instance'}
+# intellij-centos-7-master-py3: {extends: '.test_instance'}
+# oracle-centos-7-master-py3: {extends: '.test_instance'}
+# zulu-centos-7-master-py3: {extends: '.test_instance'}
+# adopt-fedora-33-master-py3: {extends: '.test_instance'}
+# amazon-fedora-33-master-py3: {extends: '.test_instance'}
+# graalvm-fedora-33-master-py3: {extends: '.test_instance'}
+# haikuvm-fedora-33-master-py3: {extends: '.test_instance'}
+# intellij-fedora-33-master-py3: {extends: '.test_instance'}
+# oracle-fedora-33-master-py3: {extends: '.test_instance'}
+# zulu-fedora-33-master-py3: {extends: '.test_instance'}
+# adopt-fedora-32-master-py3: {extends: '.test_instance'}
+# amazon-fedora-32-master-py3: {extends: '.test_instance'}
+# graalvm-fedora-32-master-py3: {extends: '.test_instance'}
+# haikuvm-fedora-32-master-py3: {extends: '.test_instance'}
+# intellij-fedora-32-master-py3: {extends: '.test_instance'}
+# oracle-fedora-32-master-py3: {extends: '.test_instance'}
+# zulu-fedora-32-master-py3: {extends: '.test_instance'}
+# adopt-opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# amazon-opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# graalvm-opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# haikuvm-opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# intellij-opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# oracle-opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# zulu-opensuse-leap-152-master-py3: {extends: '.test_instance'}
+# adopt-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# amazon-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# graalvm-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# haikuvm-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# intellij-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# oracle-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# zulu-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
+# adopt-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# amazon-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# graalvm-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# haikuvm-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# intellij-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# oracle-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# zulu-amazonlinux-2-master-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-8-master-py3: {extends: '.test_instance'}
+# amazon-oraclelinux-8-master-py3: {extends: '.test_instance'}
+# graalvm-oraclelinux-8-master-py3: {extends: '.test_instance'}
+# haikuvm-oraclelinux-8-master-py3: {extends: '.test_instance'}
+# intellij-oraclelinux-8-master-py3: {extends: '.test_instance'}
+# oracle-oraclelinux-8-master-py3: {extends: '.test_instance'}
+# zulu-oraclelinux-8-master-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# amazon-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# graalvm-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# haikuvm-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# intellij-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# oracle-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# zulu-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
+# amazon-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
+# graalvm-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
+# haikuvm-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
+# intellij-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
+# oracle-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
+# zulu-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
+# amazon-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
+# graalvm-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
+# haikuvm-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
+# intellij-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
+# oracle-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
+# zulu-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
+# adopt-debian-10-3002-2-py3: {extends: '.test_instance'}
+# adopt-debian-9-3002-2-py3: {extends: '.test_instance'}
 # adopt-ubuntu-2004-3002-2-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3002-2-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1604-3002-2-py3: {extends: '.test_instance'}
+# adopt-centos-8-3002-2-py3: {extends: '.test_instance'}
+# adopt-centos-7-3002-2-py3: {extends: '.test_instance'}
+# adopt-fedora-33-3002-2-py3: {extends: '.test_instance'}
+# adopt-fedora-32-3002-2-py3: {extends: '.test_instance'}
+# adopt-opensuse-leap-152-3002-2-py3: {extends: '.test_instance'}
+# adopt-opensuse-tmbl-latest-3002-2-py3: {extends: '.test_instance'}
+# adopt-amazonlinux-2-3002-2-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-8-3002-2-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-7-3002-2-py3: {extends: '.test_instance'}
+# adopt-arch-base-latest-3002-2-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-latest-3002-2-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-systemd-3002-2-py3: {extends: '.test_instance'}
+# adopt-debian-10-3001-4-py3: {extends: '.test_instance'}
+# adopt-debian-9-3001-4-py3: {extends: '.test_instance'}
 # adopt-ubuntu-2004-3001-4-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3001-4-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1604-3001-4-py3: {extends: '.test_instance'}
+# adopt-centos-8-3001-4-py3: {extends: '.test_instance'}
+# adopt-centos-7-3001-4-py3: {extends: '.test_instance'}
+# adopt-fedora-33-3001-4-py3: {extends: '.test_instance'}
+# adopt-fedora-32-3001-4-py3: {extends: '.test_instance'}
+# adopt-opensuse-leap-152-3001-4-py3: {extends: '.test_instance'}
+# adopt-opensuse-tmbl-latest-3001-4-py3: {extends: '.test_instance'}
+# adopt-amazonlinux-2-3001-4-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-8-3001-4-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-7-3001-4-py3: {extends: '.test_instance'}
+# adopt-arch-base-latest-3001-4-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-latest-3001-4-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-systemd-3001-4-py3: {extends: '.test_instance'}
+# adopt-debian-10-3000-6-py3: {extends: '.test_instance'}
+# adopt-debian-9-3000-6-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3000-6-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1604-3000-6-py3: {extends: '.test_instance'}
+# adopt-centos-8-3000-6-py3: {extends: '.test_instance'}
+# adopt-centos-7-3000-6-py3: {extends: '.test_instance'}
+# adopt-opensuse-leap-152-3000-6-py3: {extends: '.test_instance'}
+# adopt-amazonlinux-2-3000-6-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-8-3000-6-py3: {extends: '.test_instance'}
+# adopt-oraclelinux-7-3000-6-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-latest-3000-6-py3: {extends: '.test_instance'}
+# adopt-gentoo-stage3-systemd-3000-6-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3000-6-py2: {extends: '.test_instance'}
 # adopt-ubuntu-1604-3000-6-py2: {extends: '.test_instance'}
+# adopt-arch-base-latest-3000-6-py2: {extends: '.test_instance'}
 
 ###############################################################################
 # `release` stage: `semantic-release`
