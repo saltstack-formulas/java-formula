@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# Amazon Linux AMI-2018
+# Fedora-33
 ---
 values:
   adopt:
