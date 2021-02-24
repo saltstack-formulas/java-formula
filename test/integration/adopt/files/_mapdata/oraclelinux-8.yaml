@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# Fedora-31
+# Oracle Linux Server-8
 ---
 values:
   adopt:
