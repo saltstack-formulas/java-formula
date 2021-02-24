@@ -2,6 +2,20 @@
 Changelog
 =========
 
+`1.0.4 <https://github.com/saltstack-formulas/java-formula/compare/v1.0.3...v1.0.4>`_ (2021-02-24)
+------------------------------------------------------------------------------------------------------
+
+Tests
+^^^^^
+
+
+* **inspec:** update ``map.jinja`` reference files for ``adopt`` (\ `eae10cf <https://github.com/saltstack-formulas/java-formula/commit/eae10cffcdb0a7d3e6869002d5bbf329e20dde5d>`_\ )
+* **inspec:** update ``map.jinja`` reference files for ``amazon`` (\ `12f1e97 <https://github.com/saltstack-formulas/java-formula/commit/12f1e97bf1c8d548dcb369bd206d214ca09608f5>`_\ )
+* **inspec:** update ``map.jinja`` reference files for ``graalvm`` (\ `bae51e6 <https://github.com/saltstack-formulas/java-formula/commit/bae51e699a23435f3a1017ce530cfde5bc174a58>`_\ )
+* **inspec:** update ``map.jinja`` reference files for ``intellij`` (\ `c9a7503 <https://github.com/saltstack-formulas/java-formula/commit/c9a750361ef598a4a5e9087d10d21681cd3b8db2>`_\ )
+* **inspec:** update ``map.jinja`` reference files for ``oracle`` (\ `d614e56 <https://github.com/saltstack-formulas/java-formula/commit/d614e56340574a268e6646d1741e2d6190b5bab9>`_\ )
+* **inspec:** update ``map.jinja`` reference files for ``zulu`` (\ `230dbaf <https://github.com/saltstack-formulas/java-formula/commit/230dbaf6b9d95092728de11bc0ea79d6117cfce0>`_\ )
+
 `1.0.3 <https://github.com/saltstack-formulas/java-formula/compare/v1.0.2...v1.0.3>`_ (2021-02-23)
 ------------------------------------------------------------------------------------------------------
 
