@@ -1,0 +1,248 @@
+# yamllint disable rule:indentation rule:line-length
+# Oracle Linux Server-7
+---
+values:
+  adopt:
+    commands:
+    - java
+    - keytool
+    - servertool
+    - jjs
+    - policytool
+    javaversion: 8u252-b09_openj9-0.20.0
+    jvm: openj9
+    os: linux
+    pkg:
+      archive:
+        source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5
+        strip_components: 1
+      name: OpenJDK8U-jdk
+      uri: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk
+      use_upstream_archive: true
+      use_upstream_macapp: false
+      use_upstream_package: false
+  amazon:
+    commands:
+    - jar
+    - java
+    - javac
+    - jarsigner
+    - jcmd
+    - jconsole
+    - jdb
+    - jstack
+    - keytool
+    - policytool
+    - servertool
+    javaversion: 8.242.08.1
+    os: linux
+    pkg:
+      archive:
+        source_hash: 3a614a0e32aa5324843781d1077aad7a
+        strip_components: 1
+      name: amazon-corretto
+      package:
+        source_hash: 328b28ea75cfd9e807b8c937d7da8ec5
+        suffix: rpm
+      uri: https://corretto.aws/downloads/resources
+      use_upstream_archive: true
+      use_upstream_macapp: false
+      use_upstream_package: false
+  arch: x64
+  commands:
+  - java
+  - javac
+  config: {}
+  config_file: /etc/javaconfig.conf
+  default:
+    pkg:
+      deps:
+      - curl
+      - gzip
+      name: java-1_8_0-openjdk-devel
+      repo: {}
+  dir:
+    homes: /home
+    javahome: /usr/local/lib/java
+    security: /usr/local/lib/java/graalvm-ce-java8-20.0.0//jre/lib/security
+    symlink: /usr/local/bin
+    tmp: /tmp/java_tmp_salt
+  environ:
+    a: b
+  environ_file: /etc/default/java.sh
+  graalvm:
+    os: linux
+    pkg:
+      archive:
+        source_hash: 16ef8d89f014b4d295b7ca0c54343eab3c7d24e18b2d376665f5b12bb643723d
+        strip_components: 1
+      name: graalvm-ce-java8
+      uri: https://github.com/graalvm/graalvm-ce-builds/releases/download
+      use_upstream_archive: true
+      use_upstream_macapp: false
+      use_upstream_package: false
+    version: 20.0.0
+  haikuvm:
+    commands:
+    - haiku
+    - haikuc
+    - haikulink
+    pkg:
+      archive:
+        source_hash: 410c7aba46e57ada2c7c659d73d1535aee267bd79d1ad59635d5a18176e0fb69
+        strip_components: 1
+      name: HaikuVM
+      uri: https://github.com/chuckb/haikuVM/archive
+      use_upstream_archive: true
+      use_upstream_macapp: false
+      use_upstream_package: false
+    version: 1.4.3
+  identity:
+    rootgroup: root
+    rootuser: root
+    user: root
+  intellij:
+    commands:
+    - java
+    - jjs
+    - pack200
+    - keytool
+    - rmid
+    - rmiregistry
+    - unpack200
+    - appletviewer
+    - clhsdb
+    - extcheck
+    - hsdb
+    - idlj
+    - jarsigner
+    - jcmd
+    - jstat
+    - jconsole
+    - jmap
+    - jstatd
+    - javac
+    - jdb
+    - jps
+    - javadoc
+    - jdeps
+    - jrunscript
+    - javah
+    - jhat
+    - jar
+    - javap
+    - jinfo
+    - jstack
+    - jsadebugd
+    - native2ascii
+    - orbd
+    - policytool
+    - rmic
+    - schemagen
+    - serialver
+    - servertool
+    - tnameserv
+    - wsgen
+    - wsimport
+    - xjc
+    javaversion: 8u202b1491
+    os: linux
+    pkg:
+      archive:
+        source_hash: 7c2d8a3cb0e7c6b35ea668f346429476b95929dd369b5336a70030490aeab768
+        strip_components: 0
+      name: jbsdk
+      uri: https://jetbrains.bintray.com/intellij-jdk
+      use_upstream_archive: true
+      use_upstream_macapp: false
+      use_upstream_package: false
+  linux:
+    altpriority: 10000
+  oracle:
+    commands:
+    - java
+    - tnameserv
+    - hsdb
+    - keytool
+    - jjs
+    - clhsdb
+    - servertool
+    - rmid
+    - unpack200
+    - policytool
+    - orbd
+    - rmiregistry
+    - pack200
+    javaversion: 8u251-b08
+    os: linux
+    pkg:
+      archive:
+        source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e
+        strip_components: 1
+      jce:
+        source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59
+      name: jre
+      package:
+        source_hash: 6c5b3cfebb10618e2c2a44ae56bee034c3a8846699dfce916993bb4a58ed6eb3
+        suffix: rpm
+      uri: http://download.oracle.com/otn-pub/java
+      use_upstream_archive: true
+      use_upstream_macapp: false
+      use_upstream_package: false
+    url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784
+  path: /usr/local/lib/java/graalvm-ce-java8-20.0.0
+  pkg:
+    archive:
+      enforce_toplevel: false
+      name: /usr/local/lib/java/graalvm-ce-java8-20.0.0
+      options: --strip-components=1
+      source: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.0.0/graalvm-ce-java8-linux-amd64-20.0.0.tar.gz
+      source_hash: 16ef8d89f014b4d295b7ca0c54343eab3c7d24e18b2d376665f5b12bb643723d
+      trim_output: true
+    commands:
+    - java
+    - javac
+    cookieheader: ''
+    deps:
+    - tar
+    macapp: {}
+    package: {}
+  provider: graalvm
+  release: 8
+  retry_option:
+    attempts: 2
+    interval: 10
+    splay: 10
+    until: true
+  security:
+    cacert:
+      keystore:
+        password: changeit
+  zulu:
+    commands:
+    - jar
+    - java
+    - javac
+    - jarsigner
+    - jcmd
+    - jconsole
+    - jdb
+    - jstack
+    - keytool
+    - policytool
+    - servertool
+    javaversion: 8.0.252
+    os: linux
+    pkg:
+      archive:
+        source_hash: ab8a4194006f12dd48bf7f176ca7879706d3f8fc7d3208313a46cc9ee2270716
+        strip_components: 1
+      name: zulu
+      package:
+        source_hash: 9900f681622d40cbd4b659f80aa12f70816876896332d8f0df1767c95374d781
+        suffix: rpm
+      uri: https://cdn.azul.com/zulu/bin
+      use_upstream_archive: true
+      use_upstream_macapp: false
+      use_upstream_package: false
+    version: 8.46.0.19-ca-jdk
