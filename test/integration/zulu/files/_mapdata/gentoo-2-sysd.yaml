@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# CentOS-6
+# Gentoo-2
 ---
 values:
   adopt:
@@ -41,18 +41,23 @@ values:
         source_hash: 3a614a0e32aa5324843781d1077aad7a
         strip_components: 1
       name: amazon-corretto
-      package:
-        source_hash: 328b28ea75cfd9e807b8c937d7da8ec5
-        suffix: rpm
       uri: https://corretto.aws/downloads/resources
       use_upstream_archive: true
       use_upstream_macapp: false
       use_upstream_package: false
   arch: x64
   commands: &id001
-  - haiku
-  - haikuc
-  - haikulink
+  - jar
+  - java
+  - javac
+  - jarsigner
+  - jcmd
+  - jconsole
+  - jdb
+  - jstack
+  - keytool
+  - policytool
+  - servertool
   config: {}
   config_file: /etc/javaconfig.conf
   default:
@@ -60,12 +65,12 @@ values:
       deps:
       - curl
       - gzip
-      name: java-1_8_0-openjdk-devel
+      name: virtual/jdk
       repo: {}
   dir:
     homes: /home
     javahome: /usr/local/lib/java
-    security: /usr/local/lib/java/HaikuVM-1.4.3//jre/lib/security
+    security: /usr/local/lib/java/zulu-8.0.252//jre/lib/security
     symlink: /usr/local/bin
     tmp: /tmp/java_tmp_salt
   environ:
@@ -84,7 +89,10 @@ values:
       use_upstream_package: false
     version: 20.0.0
   haikuvm:
-    commands: *id001
+    commands:
+    - haiku
+    - haikuc
+    - haikulink
     pkg:
       archive:
         source_hash: 410c7aba46e57ada2c7c659d73d1535aee267bd79d1ad59635d5a18176e0fb69
@@ -180,22 +188,19 @@ values:
       jce:
         source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59
       name: jre
-      package:
-        source_hash: 6c5b3cfebb10618e2c2a44ae56bee034c3a8846699dfce916993bb4a58ed6eb3
-        suffix: rpm
       uri: http://download.oracle.com/otn-pub/java
       use_upstream_archive: true
       use_upstream_macapp: false
       use_upstream_package: false
     url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784
-  path: /usr/local/lib/java/HaikuVM-1.4.3
+  path: /usr/local/lib/java/zulu-8.0.252
   pkg:
     archive:
       enforce_toplevel: false
-      name: /usr/local/lib/java/HaikuVM-1.4.3
+      name: /usr/local/lib/java/zulu-8.0.252
       options: --strip-components=1
-      source: https://github.com/chuckb/haikuVM/archive/1.4.3.tar.gz
-      source_hash: 410c7aba46e57ada2c7c659d73d1535aee267bd79d1ad59635d5a18176e0fb69
+      source: https://cdn.azul.com/zulu/bin/zulu8.46.0.19-ca-jdk8.0.252-linux_x64.tar.gz
+      source_hash: ab8a4194006f12dd48bf7f176ca7879706d3f8fc7d3208313a46cc9ee2270716
       trim_output: true
     commands:
     - java
@@ -205,7 +210,7 @@ values:
     - tar
     macapp: {}
     package: {}
-  provider: haikuvm
+  provider: zulu
   release: 8
   retry_option:
     attempts: 2
@@ -217,18 +222,7 @@ values:
       keystore:
         password: changeit
   zulu:
-    commands:
-    - jar
-    - java
-    - javac
-    - jarsigner
-    - jcmd
-    - jconsole
-    - jdb
-    - jstack
-    - keytool
-    - policytool
-    - servertool
+    commands: *id001
     javaversion: 8.0.252
     os: linux
     pkg:
@@ -236,9 +230,6 @@ values:
         source_hash: ab8a4194006f12dd48bf7f176ca7879706d3f8fc7d3208313a46cc9ee2270716
         strip_components: 1
       name: zulu
-      package:
-        source_hash: 9900f681622d40cbd4b659f80aa12f70816876896332d8f0df1767c95374d781
-        suffix: rpm
       uri: https://cdn.azul.com/zulu/bin
       use_upstream_archive: true
       use_upstream_macapp: false

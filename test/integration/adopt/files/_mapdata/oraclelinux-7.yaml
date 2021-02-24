@@ -1,9 +1,9 @@
 # yamllint disable rule:indentation rule:line-length
-# Amazon Linux AMI-2018
+# Oracle Linux Server-7
 ---
 values:
   adopt:
-    commands:
+    commands: &id001
     - java
     - keytool
     - servertool
@@ -49,10 +49,7 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
   arch: x64
-  commands: &id001
-  - haiku
-  - haikuc
-  - haikulink
+  commands: *id001
   config: {}
   config_file: /etc/javaconfig.conf
   default:
@@ -65,7 +62,7 @@ values:
   dir:
     homes: /home
     javahome: /usr/local/lib/java
-    security: /usr/local/lib/java/HaikuVM-1.4.3//jre/lib/security
+    security: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0//jre/lib/security
     symlink: /usr/local/bin
     tmp: /tmp/java_tmp_salt
   environ:
@@ -84,7 +81,10 @@ values:
       use_upstream_package: false
     version: 20.0.0
   haikuvm:
-    commands: *id001
+    commands:
+    - haiku
+    - haikuc
+    - haikulink
     pkg:
       archive:
         source_hash: 410c7aba46e57ada2c7c659d73d1535aee267bd79d1ad59635d5a18176e0fb69
@@ -188,14 +188,14 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
     url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784
-  path: /usr/local/lib/java/HaikuVM-1.4.3
+  path: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
   pkg:
     archive:
       enforce_toplevel: false
-      name: /usr/local/lib/java/HaikuVM-1.4.3
+      name: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
       options: --strip-components=1
-      source: https://github.com/chuckb/haikuVM/archive/1.4.3.tar.gz
-      source_hash: 410c7aba46e57ada2c7c659d73d1535aee267bd79d1ad59635d5a18176e0fb69
+      source: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09_openj9-0.20.0/OpenJDK8U-jdk_x64_linux_openj9_8u252b09_openj9-0.20.0.tar.gz
+      source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5
       trim_output: true
     commands:
     - java
@@ -205,7 +205,7 @@ values:
     - tar
     macapp: {}
     package: {}
-  provider: haikuvm
+  provider: adopt
   release: 8
   retry_option:
     attempts: 2

@@ -1,9 +1,9 @@
 # yamllint disable rule:indentation rule:line-length
-# CentOS-6
+# Gentoo-2
 ---
 values:
   adopt:
-    commands: &id001
+    commands:
     - java
     - keytool
     - servertool
@@ -41,15 +41,54 @@ values:
         source_hash: 3a614a0e32aa5324843781d1077aad7a
         strip_components: 1
       name: amazon-corretto
-      package:
-        source_hash: 328b28ea75cfd9e807b8c937d7da8ec5
-        suffix: rpm
       uri: https://corretto.aws/downloads/resources
       use_upstream_archive: true
       use_upstream_macapp: false
       use_upstream_package: false
   arch: x64
-  commands: *id001
+  commands: &id001
+  - java
+  - jjs
+  - pack200
+  - keytool
+  - rmid
+  - rmiregistry
+  - unpack200
+  - appletviewer
+  - clhsdb
+  - extcheck
+  - hsdb
+  - idlj
+  - jarsigner
+  - jcmd
+  - jstat
+  - jconsole
+  - jmap
+  - jstatd
+  - javac
+  - jdb
+  - jps
+  - javadoc
+  - jdeps
+  - jrunscript
+  - javah
+  - jhat
+  - jar
+  - javap
+  - jinfo
+  - jstack
+  - jsadebugd
+  - native2ascii
+  - orbd
+  - policytool
+  - rmic
+  - schemagen
+  - serialver
+  - servertool
+  - tnameserv
+  - wsgen
+  - wsimport
+  - xjc
   config: {}
   config_file: /etc/javaconfig.conf
   default:
@@ -57,12 +96,12 @@ values:
       deps:
       - curl
       - gzip
-      name: java-1_8_0-openjdk-devel
+      name: virtual/jdk
       repo: {}
   dir:
     homes: /home
     javahome: /usr/local/lib/java
-    security: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0//jre/lib/security
+    security: /usr/local/lib/java/jre-8u202b1491//jre/lib/security
     symlink: /usr/local/bin
     tmp: /tmp/java_tmp_salt
   environ:
@@ -100,49 +139,7 @@ values:
     rootuser: root
     user: root
   intellij:
-    commands:
-    - java
-    - jjs
-    - pack200
-    - keytool
-    - rmid
-    - rmiregistry
-    - unpack200
-    - appletviewer
-    - clhsdb
-    - extcheck
-    - hsdb
-    - idlj
-    - jarsigner
-    - jcmd
-    - jstat
-    - jconsole
-    - jmap
-    - jstatd
-    - javac
-    - jdb
-    - jps
-    - javadoc
-    - jdeps
-    - jrunscript
-    - javah
-    - jhat
-    - jar
-    - javap
-    - jinfo
-    - jstack
-    - jsadebugd
-    - native2ascii
-    - orbd
-    - policytool
-    - rmic
-    - schemagen
-    - serialver
-    - servertool
-    - tnameserv
-    - wsgen
-    - wsimport
-    - xjc
+    commands: *id001
     javaversion: 8u202b1491
     os: linux
     pkg:
@@ -180,22 +177,19 @@ values:
       jce:
         source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59
       name: jre
-      package:
-        source_hash: 6c5b3cfebb10618e2c2a44ae56bee034c3a8846699dfce916993bb4a58ed6eb3
-        suffix: rpm
       uri: http://download.oracle.com/otn-pub/java
       use_upstream_archive: true
       use_upstream_macapp: false
       use_upstream_package: false
     url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784
-  path: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
+  path: /usr/local/lib/java/jre-8u202b1491
   pkg:
     archive:
       enforce_toplevel: false
-      name: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
+      name: /usr/local/lib/java/jre-8u202b1491
       options: --strip-components=1
-      source: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09_openj9-0.20.0/OpenJDK8U-jdk_x64_linux_openj9_8u252b09_openj9-0.20.0.tar.gz
-      source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5
+      source: https://jetbrains.bintray.com/intellij-jdk/jbsdk8u202b1491_linux_x64.tar.gz
+      source_hash: 7c2d8a3cb0e7c6b35ea668f346429476b95929dd369b5336a70030490aeab768
       trim_output: true
     commands:
     - java
@@ -205,7 +199,7 @@ values:
     - tar
     macapp: {}
     package: {}
-  provider: adopt
+  provider: intellij
   release: 8
   retry_option:
     attempts: 2
@@ -236,9 +230,6 @@ values:
         source_hash: ab8a4194006f12dd48bf7f176ca7879706d3f8fc7d3208313a46cc9ee2270716
         strip_components: 1
       name: zulu
-      package:
-        source_hash: 9900f681622d40cbd4b659f80aa12f70816876896332d8f0df1767c95374d781
-        suffix: rpm
       uri: https://cdn.azul.com/zulu/bin
       use_upstream_archive: true
       use_upstream_macapp: false

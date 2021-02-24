@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# Amazon Linux AMI-2018
+# Fedora-33
 ---
 values:
   adopt:
@@ -22,7 +22,7 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
   amazon:
-    commands:
+    commands: &id001
     - jar
     - java
     - javac
@@ -49,20 +49,7 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
   arch: x64
-  commands: &id001
-  - java
-  - tnameserv
-  - hsdb
-  - keytool
-  - jjs
-  - clhsdb
-  - servertool
-  - rmid
-  - unpack200
-  - policytool
-  - orbd
-  - rmiregistry
-  - pack200
+  commands: *id001
   config: {}
   config_file: /etc/javaconfig.conf
   default:
@@ -75,7 +62,7 @@ values:
   dir:
     homes: /home
     javahome: /usr/local/lib/java
-    security: /usr/local/lib/java/jre-8u251-b08//jre/lib/security
+    security: /usr/local/lib/java/amazon-corretto-8.242.08.1//jre/lib/security
     symlink: /usr/local/bin
     tmp: /tmp/java_tmp_salt
   environ:
@@ -170,7 +157,20 @@ values:
   linux:
     altpriority: 10000
   oracle:
-    commands: *id001
+    commands:
+    - java
+    - tnameserv
+    - hsdb
+    - keytool
+    - jjs
+    - clhsdb
+    - servertool
+    - rmid
+    - unpack200
+    - policytool
+    - orbd
+    - rmiregistry
+    - pack200
     javaversion: 8u251-b08
     os: linux
     pkg:
@@ -188,26 +188,24 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
     url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784
-  path: /usr/local/lib/java/jre-8u251-b08
+  path: /usr/local/lib/java/amazon-corretto-8.242.08.1
   pkg:
     archive:
       enforce_toplevel: false
-      name: /usr/local/lib/java/jre-8u251-b08
+      name: /usr/local/lib/java/amazon-corretto-8.242.08.1
       options: --strip-components=1
-      source: http://download.oracle.com/otn-pub/java/8u251-b08/3d5a2bb8f8d4428bbe94aed7ec7ae784/jre-8u251-linux-x64.tar.gz
-      source_hash: 777a8d689e863275a647ae52cb30fd90022a3af268f34fc5b9867ce32f1b374e
+      source: https://corretto.aws/downloads/resources/8.242.08.1/amazon-corretto-8.242.08.1-linux-x64.tar.gz
+      source_hash: 3a614a0e32aa5324843781d1077aad7a
       trim_output: true
     commands:
     - java
     - javac
-    cookieheader: -b oraclelicense=accept-securebackup-cookie
+    cookieheader: ''
     deps:
     - tar
-    jce_source: http://download.oracle.com/otn-pub/java/8u251-b08/3d5a2bb8f8d4428bbe94aed7ec7ae784/jce/8/jce_policy-8.zip
-    jce_source_hash: f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59
     macapp: {}
     package: {}
-  provider: oracle
+  provider: amazon
   release: 8
   retry_option:
     attempts: 2

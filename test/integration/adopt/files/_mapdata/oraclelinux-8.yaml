@@ -1,9 +1,9 @@
 # yamllint disable rule:indentation rule:line-length
-# Amazon Linux AMI-2018
+# Oracle Linux Server-8
 ---
 values:
   adopt:
-    commands:
+    commands: &id001
     - java
     - keytool
     - servertool
@@ -49,18 +49,7 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
   arch: x64
-  commands: &id001
-  - jar
-  - java
-  - javac
-  - jarsigner
-  - jcmd
-  - jconsole
-  - jdb
-  - jstack
-  - keytool
-  - policytool
-  - servertool
+  commands: *id001
   config: {}
   config_file: /etc/javaconfig.conf
   default:
@@ -73,7 +62,7 @@ values:
   dir:
     homes: /home
     javahome: /usr/local/lib/java
-    security: /usr/local/lib/java/zulu-8.0.252//jre/lib/security
+    security: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0//jre/lib/security
     symlink: /usr/local/bin
     tmp: /tmp/java_tmp_salt
   environ:
@@ -199,14 +188,14 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
     url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784
-  path: /usr/local/lib/java/zulu-8.0.252
+  path: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
   pkg:
     archive:
       enforce_toplevel: false
-      name: /usr/local/lib/java/zulu-8.0.252
+      name: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
       options: --strip-components=1
-      source: https://cdn.azul.com/zulu/bin/zulu8.46.0.19-ca-jdk8.0.252-linux_x64.tar.gz
-      source_hash: ab8a4194006f12dd48bf7f176ca7879706d3f8fc7d3208313a46cc9ee2270716
+      source: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09_openj9-0.20.0/OpenJDK8U-jdk_x64_linux_openj9_8u252b09_openj9-0.20.0.tar.gz
+      source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5
       trim_output: true
     commands:
     - java
@@ -216,7 +205,7 @@ values:
     - tar
     macapp: {}
     package: {}
-  provider: zulu
+  provider: adopt
   release: 8
   retry_option:
     attempts: 2
@@ -228,7 +217,18 @@ values:
       keystore:
         password: changeit
   zulu:
-    commands: *id001
+    commands:
+    - jar
+    - java
+    - javac
+    - jarsigner
+    - jcmd
+    - jconsole
+    - jdb
+    - jstack
+    - keytool
+    - policytool
+    - servertool
     javaversion: 8.0.252
     os: linux
     pkg:

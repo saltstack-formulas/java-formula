@@ -1,9 +1,9 @@
 # yamllint disable rule:indentation rule:line-length
-# Fedora-31
+# Fedora-33
 ---
 values:
   adopt:
-    commands:
+    commands: &id001
     - java
     - keytool
     - servertool
@@ -22,7 +22,7 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
   amazon:
-    commands: &id001
+    commands:
     - jar
     - java
     - javac
@@ -62,7 +62,7 @@ values:
   dir:
     homes: /home
     javahome: /usr/local/lib/java
-    security: /usr/local/lib/java/amazon-corretto-8.242.08.1//jre/lib/security
+    security: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0//jre/lib/security
     symlink: /usr/local/bin
     tmp: /tmp/java_tmp_salt
   environ:
@@ -188,14 +188,14 @@ values:
       use_upstream_macapp: false
       use_upstream_package: false
     url_md5: 3d5a2bb8f8d4428bbe94aed7ec7ae784
-  path: /usr/local/lib/java/amazon-corretto-8.242.08.1
+  path: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
   pkg:
     archive:
       enforce_toplevel: false
-      name: /usr/local/lib/java/amazon-corretto-8.242.08.1
+      name: /usr/local/lib/java/adoptopenjdk-8-openj9-8u252-b09_openj9-0.20.0
       options: --strip-components=1
-      source: https://corretto.aws/downloads/resources/8.242.08.1/amazon-corretto-8.242.08.1-linux-x64.tar.gz
-      source_hash: 3a614a0e32aa5324843781d1077aad7a
+      source: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09_openj9-0.20.0/OpenJDK8U-jdk_x64_linux_openj9_8u252b09_openj9-0.20.0.tar.gz
+      source_hash: 910ae847109a6dd1b6cf69baa7615ea2cce8cff787e5a9349a5331ce7604f3a5
       trim_output: true
     commands:
     - java
@@ -205,7 +205,7 @@ values:
     - tar
     macapp: {}
     package: {}
-  provider: amazon
+  provider: adopt
   release: 8
   retry_option:
     attempts: 2
