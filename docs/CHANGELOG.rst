@@ -2,6 +2,28 @@
 Changelog
 =========
 
+`2.0.0 <https://github.com/saltstack-formulas/java-formula/compare/v1.0.4...v2.0.0>`_ (2021-02-25)
+------------------------------------------------------------------------------------------------------
+
+Features
+^^^^^^^^
+
+
+* **map:** update to v5 ``map.jinja`` (\ `3b8795e <https://github.com/saltstack-formulas/java-formula/commit/3b8795ef2bb5f76183d415ed6ce82a8b1ab46a48>`_\ )
+
+Tests
+^^^^^
+
+
+* **inspec:** ``map.jinja`` configuration is now in reference files (\ `80a3f8f <https://github.com/saltstack-formulas/java-formula/commit/80a3f8f30e3dea5d4473fa5ca5a30b72fe4e2ffe>`_\ )
+
+BREAKING CHANGES
+^^^^^^^^^^^^^^^^
+
+
+* **map:** ``map.jinja`` now export a generic ``mapdata`` variable
+* **map:** The parameters per grains are now under ``java/parameters/``
+
 `1.0.4 <https://github.com/saltstack-formulas/java-formula/compare/v1.0.3...v1.0.4>`_ (2021-02-24)
 ------------------------------------------------------------------------------------------------------
 
