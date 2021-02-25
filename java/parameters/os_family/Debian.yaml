@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == Debian.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+values:
+  dir:
+    javahome: /usr/lib/jvm
+
+  default:
+    pkg:
+      name: default-jdk
+      deps:
+        - software-properties-common
+  amazon:
+    pkg:
+      use_upstream_package: false
+      use_upstream_archive: true
+      package:
+        suffix: deb
+        # linux x64 debian
+        source_hash: bc266354a0a02aaf93ecc5062ee24ff8
+  zulu:
+    pkg:
+      use_upstream_package: false
+      use_upstream_archive: true
+      package:
+        suffix: deb
+        # linux x64 debian
+        source_hash: abd537f6e713c9bee2b016b96c6abb0deecc2c7de2f998e70024f9e8fcd82699
+...

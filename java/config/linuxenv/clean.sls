@@ -2,7 +2,7 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import java as j with context %}
+{%- from tplroot ~ "/map.jinja" import mapdata as j with context %}
 
 {%- if j.linux.altpriority|int > 0 and grains.os_family not in ('Arch', 'MacOS') and j.commands %}
        {%- set sls_archive_clean = tplroot ~ '.archive.clean' %}

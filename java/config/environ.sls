@@ -2,7 +2,7 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import java as j with context %}
+{%- from tplroot ~ "/map.jinja" import mapdata as j with context %}
 
 {%- if 'environ' in j and j.environ %}
        {%- set sls_archive_install = tplroot ~ '.archive' %}

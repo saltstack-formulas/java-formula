@@ -1,0 +1,85 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == MacOS.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+values:
+  environ_file: /etc/defaults/java.sh
+  dir:
+    homes: /Users
+    javahome: /Library/Java/JavaVirtualMachines
+
+  adopt:
+    javaversion: 8u252-b09.1_openj9-0.20.0  # or 8u252-b09.1
+    jvm: openj_macosXL    # or hotspot
+    os: mac
+    pkg:
+      # homebrew
+      # name: adoptopenjdk/openjdk/adoptopenjdk8
+      use_upstream_true: false
+      use_upstream_package: false
+      archive:
+        # jdk x64 tarball
+        source_hash: b7fa56aa38d3478023b4e5666a514a07696c56ed945b79a9a8d8abf73db1e6e7
+        # jre x64 tarball
+        # source_hash: 4f4b0349d4ebfbdd58026c0db6965fd3eead2495835bb9fa9481afd6ae2b970a
+
+  amazon:
+    javaversion: 8.252.09.1
+    os: macosx
+    pkg:
+      use_upstream_archive: false
+      archive:
+        # jdk x64 tarball
+        source_hash: 4ff460eefa2d3deabfbfd967aa06da99
+
+  graalvm:
+    os: darwin
+    pkg:
+      archive:
+        # jdk x64 tarball
+        source_hash: e3d35fdfe4f62022c42029c052f2b8277b3d896496cf45c2e82d251f5d49701a
+
+  intellij:
+    javaversion: 8u202b1490
+    os: osx
+    pkg:
+      archive:
+        # jdk x64 tarball
+        source_hash: 0eb1071015de1d81d26c779a1878b3b86fb83dafca852540332f88a93fa9e1a9
+
+  oracle:
+    os: macosx
+    environ_file: /etc/defaults/java-oracle.sh
+    pkg:
+      use_upstream_macapp: true
+      use_upstream_archive: false
+      archive:
+        # jdk x64 tarball
+        source_hash: b41367948cf99ca0b8d1571f116b7e3e322dd1ebdfd4d390e959164d75b97c20
+        # jre x64 tarball
+        # source_hash: 671594b665c40ecaf22361322fbf7ca893a63ad7ef698d1482ee03e26ab85aaa
+      macapp:
+        # jdk x64 macapp
+        source_hash: eef71e68ce9c2c7e3d7e910616e555b219cdd98f4fa59709279a40b639f1d212
+        # jre x64 macapp
+        # source_hash: 32322f6401d70b54de2370cbd5597dbcd06c12293722b38551face88aba3ac99
+
+  zulu:
+    os: macosx
+    pkg:
+      use_upstream_macapp: true
+      use_upstream_archive: false
+      archive:
+        source_hash: 43570b0a6455a02d25b0c4937164560fdb0a9478f9010c583f510fa80881ce0b
+      macapp:
+        source_hash: 1fa97725adf5df15a84d835156d4ca35433af0d6b0a1aa724336152d4325b827
+...

@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('oskernel') == Linux.
+#
+# You just need to add the key:values for this `oskernel` that differ
+# from `defaults.yaml`.
+#
+# If you do not need to provide defaults via the `oskernel` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+values:
+  pkg:
+    deps:
+      - tar
+...
