@@ -155,6 +155,16 @@ values:
       use_upstream_package: false
   linux:
     altpriority: 10000
+  map_jinja:
+    sources:
+    - Y:G@osarch
+    - Y:G@os_family
+    - Y:G@os
+    - Y:G@osfinger
+    - Y:G@kernel
+    - C@java:lookup
+    - C@java
+    - Y:G@id
   oracle:
     commands:
     - java
