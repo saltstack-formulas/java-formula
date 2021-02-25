@@ -1,0 +1,25 @@
+{#- -*- coding: utf-8 -*- #}
+{#- vim: ft=jinja #}
+{#-
+    Set values specific to:
+      salt['config.get']('os_family') == MacOS.
+
+    You just need to add the key:values for this `os` that differ
+    from `defaults.yaml` + `<osarch>.yaml`.
+
+    This jinja2 file must return a valid `map.jinja` YAML.
+
+    If you do not need to provide calculated values via the `os`
+    config, you can remove this file or provide at least an empty
+    dict, e.g.
+    values: {}
+#}
+---
+{%- set rootuser = salt['cmd.run']("stat -f '%Su' /dev/console") %}
+{%- set rootgroup = salt['cmd.run']("stat -f '%Sg' /dev/console") %}
+values:
+  identity:
+    rootuser: {{ rootuser | d('') }}
+    rootgroup: {{ rootgroup | d('') }}   # wheel?
+    user: {{ rootuser | d('') }}
+...

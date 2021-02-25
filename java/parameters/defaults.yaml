@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+#
+# Set default values.
 ---
-java:
+values:
   release: 8
   provider: adopt
 
@@ -269,3 +271,4 @@ java:
 
   linux:
     altpriority: 0
+...

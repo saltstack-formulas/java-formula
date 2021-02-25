@@ -14,7 +14,6 @@ ignore: |
   test/**/states/**/*.sls
   .kitchen/
   pillar.example
-  java/osfamilymap.yaml
 
 yaml-files:
   # Default settings

@@ -1,0 +1,110 @@
+{#- -*- coding: utf-8 -*- #}
+{#- vim: ft=jinja #}
+
+{%- set provider = mapdata.provider|string %}
+{%- set suffix = '.tar.gz' %}
+
+{%- if 'adopt' in provider|lower %}
+    {%- set jversion = '8u252-b09_openj9-0.20.0' if 'javaversion' not in mapdata.adopt else mapdata.adopt.javaversion|replace('8u', mapdata.release ~ 'u') %}  # noqa 204
+    {%- set name = mapdata.adopt.pkg.name|replace('8U', mapdata.release ~ 'U') %}
+    {%- set jvm = 'hotspot' if 'jvm' not in mapdata.adopt else mapdata.adopt.jvm %}
+    {%- set uri = '%s%s/%s_%s_%s_%s'|format(mapdata.adopt.pkg.uri, jversion, name, mapdata.arch, mapdata.adopt.os, jvm) %}
+    {%- set url = '%s_%s'|format(uri, jversion|replace('-','',1)) %}
+    {%- set name = 'adoptopenjdk-%s%s'|format(mapdata.release, '-' ~ mapdata.adopt.jvm if 'openj9' in jvm else '') %}
+
+{%- elif 'amazon' in provider|lower %}
+ {%- set jversion = '8.242.08.1' if 'javaversion' not in mapdata.amazon else mapdata.amazon.javaversion|replace('^8', mapdata.release) %}
+    {%- set version = jversion if 'version' not in mapdata.amazon else mapdata.amazon.version %}
+    {%- set jversion = jversion or version %}
+    {%- set name = mapdata.amazon.pkg.name %}
+    {%- set uri = mapdata.amazon.pkg.uri %}
+    {%- set url = '{0}/{1}/{2}-{1}-{3}-{4}'.format(uri, jversion, name, mapdata.amazon.os, mapdata.arch) %}
+
+{%- elif 'graalvm' in provider|lower %}
+    {%- set jversion = '20.0.0' if 'javaversion' not in mapdata.graalvm else mapdata.graalvm.javaversion %}
+    {%- set version = jversion if 'version' not in mapdata.graalvm else mapdata.graalvm.version %}
+    {%- set name = mapdata.graalvm.pkg.name|replace('8', mapdata.release) %}  {# ensure name matches release #}
+    {%- set uri = mapdata.graalvm.pkg.uri %}
+    {%- set arch = 'amd64' if mapdata.arch|lower == 'x64' else mapdata.arch %}
+    {%- set url = '{0}/vm-{1}/{2}-{3}-{4}-{1}'.format(uri, jversion, name, mapdata.graalvm.os, arch) %}
+
+{%- elif 'haikuvm' in provider|lower %}
+    {%- set version = '1.4.3' if 'version' not in mapdata.haikuvm else mapdata.haikuvm.version %}
+    {%- set jversion = mapdata.haikuvm.version %}
+    {%- set name = mapdata.haikuvm.pkg.name %}
+    {%- set url = '%s/%s'|format(mapdata.haikuvm.pkg.uri, version) %}
+
+{%- elif 'intellij' in provider|lower %}
+    {%- set jversion = '8u202b1491' if 'javaversion' not in mapdata.intellij else mapdata.intellij.javaversion %}
+    {%- set jbuild = '' if jversion.split('-')|length < 2 else jversion.split('-')[1] %}
+    {%- set name = mapdata.intellij.pkg.name %}
+
+    {%- set url = '%s/%s-%s-%s-%s%s'|format(mapdata.intellij.pkg.uri, name, jversion, mapdata.intellij.os, mapdata.arch, jbuild) %}
+    {%- if mapdata.release|int <= 8 %}
+          {%- set url = '%s/%s%s_%s_%s'|format(mapdata.intellij.pkg.uri, name, jversion, mapdata.intellij.os, mapdata.arch) %}
+    {%- endif %}
+    {%- set name = 'jre' if mapdata.intellij.pkg.name == 'jbsdk' else 'jdk' %}
+
+{%- elif 'oracle' in provider|lower %}
+     {%- set jversion = mapdata.oracle.javaversion %}
+     {%- set jshortversion = jversion.split('-')[0].split('+')[0] %}
+     {%- set name = mapdata.oracle.pkg.name %}
+     {%- set suffix = '_bin' if mapdata.release|int > 8 else '' %}
+
+     {%- if 'oracle.com/otn' in mapdata.oracle.pkg.uri %}
+            {%- set md5 = '' if 'url_md5' not in mapdata.oracle else mapdata.oracle.url_md5 %}
+            {%- set uri = '%s/%s/%s'|format(mapdata.oracle.pkg.uri, jversion, md5) %}
+            {%- do mapdata.pkg.update({'cookieheader': '-b oraclelicense=accept-securebackup-cookie'}) %}
+
+     {%- else %}
+            {%- set uri = mapdata.oracle.pkg.uri %}   {# non-oracle uri #}
+     {%- endif %}
+     {%- set url = '%s/%s-%s-%s-%s%s'|format(uri, name, jshortversion, mapdata.oracle.os, mapdata.arch, suffix) %}
+     {%- if mapdata.release|int > 8 %}
+            {%- set url = '%s/%s-%s_%s-%s%s'|format(uri, name, jshortversion, mapdata.oracle.os, mapdata.arch, suffix) %}
+     {%- endif %}
+
+     {# JDK9 and later already ship unlimited policy files. #}
+     {%- set jce_url = '' %}
+     {%- if mapdata.release|int == 8 %}
+            {%- set jce_url = '{0}/jce/{1}/jce_policy-{1}.zip'.format(uri, mapdata.release) %}
+            {%- do mapdata.pkg.update({ 'jce_source': jce_url }) %}
+            {%- do mapdata.pkg.update({ 'jce_source_hash': mapdata.oracle.pkg.jce.source_hash }) %}
+     {%- endif %}
+
+{%- elif 'zulu' in provider|lower %}
+     {%- set jversion = '' if 'javaversion' not in mapdata.zulu else mapdata.zulu.javaversion %}
+     {%- set version = '' if 'version' not in mapdata.zulu else mapdata.zulu.version %}
+     {%- set name = mapdata.zulu.pkg.name %}
+     {%- set uri = mapdata.zulu.pkg.uri %}
+     {%- set url = '%s/%s%s%s-%s_%s'|format(uri, name, version, jversion, mapdata.zulu.os, mapdata.arch) %}
+
+{%- endif %}
+
+#### MAIN SECTION ####
+
+{%- do mapdata.update({ 'path': mapdata.dir.javahome ~ '/' ~ name ~ '-' ~ jversion }) %}
+{%- do mapdata.dir.update({ 'security': mapdata.path ~ '/' ~ mapdata.dir.security }) %}
+{%- do mapdata.update({ 'commands': ['java', 'javac']}) %}
+{%- if 'commands' in mapdata[provider] and mapdata[provider]['commands'] %}
+       {%- do mapdata.update({ 'commands': mapdata[provider]['commands'] }) %}
+{%- endif %}
+
+{%- if 'use_upstream_archive' in mapdata[provider]['pkg'] and mapdata[provider]['pkg']['use_upstream_archive'] %}
+       {%- do mapdata.pkg.archive.update({'name': mapdata.path }) %}
+       {%- do mapdata.pkg.archive.update({'source': url ~ '.tar.gz'}) %}
+       {%- do mapdata.pkg.archive.update({'source_hash': mapdata[provider]['pkg']['archive']['source_hash']}) %}
+
+{%- elif 'use_upstream_macapp' in mapdata[provider]['pkg'] and mapdata[provider]['pkg']['use_upstream_macapp'] %}
+       {%- do mapdata.pkg.macapp.update({'name': mapdata.path }) %}
+       {%- do mapdata.pkg.macapp.update({'source': url ~ '.dmg' }) %}
+       {%- do mapdata.pkg.macapp.update({'source_hash': mapdata[provider]['pkg']['macapp']['source_hash']}) %}
+
+{%- elif 'use_upstream_package' in mapdata[provider]['pkg'] and mapdata[provider]['pkg']['use_upstream_package'] %}
+       {%- do mapdata.pkg.package.update({'name': mapdata.path }) %}
+       {%- do mapdata.pkg.package.update({'source': url ~ '.pkg' }) %}
+       {%- do mapdata.pkg.package.update({'source_hash': mapdata[provider]['pkg']['package']['source_hash']}) %}
+
+     {# Is there any way to install pkg files? #}
+
+{%- endif %}
