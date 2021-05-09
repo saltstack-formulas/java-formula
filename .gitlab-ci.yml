@@ -238,6 +238,13 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # intellij-oraclelinux-7-master-py3: {extends: '.test_instance'}
 # oracle-oraclelinux-7-master-py3: {extends: '.test_instance'}
 # zulu-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# adopt-arch-base-latest-master-py3: {extends: '.test_instance'}
+# amazon-arch-base-latest-master-py3: {extends: '.test_instance'}
+# graalvm-arch-base-latest-master-py3: {extends: '.test_instance'}
+# haikuvm-arch-base-latest-master-py3: {extends: '.test_instance'}
+# intellij-arch-base-latest-master-py3: {extends: '.test_instance'}
+# oracle-arch-base-latest-master-py3: {extends: '.test_instance'}
+# zulu-arch-base-latest-master-py3: {extends: '.test_instance'}
 # adopt-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
 # amazon-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
 # graalvm-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
@@ -265,12 +272,6 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-8-3003-0-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-7-3003-0-py3: {extends: '.test_instance'}
 # adopt-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
-# amazon-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
-# graalvm-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
-# haikuvm-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
-# intellij-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
-# oracle-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
-# zulu-arch-base-latest-3003-0-py3: {extends: '.test_instance'}
 # adopt-gentoo-stage3-latest-3003-0-py3: {extends: '.test_instance'}
 # adopt-gentoo-stage3-systemd-3003-0-py3: {extends: '.test_instance'}
 # adopt-debian-10-3002-6-py3: {extends: '.test_instance'}
