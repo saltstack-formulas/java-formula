@@ -127,7 +127,6 @@ rubocop:
 # adopt-debian-9-tiamat-py3: {extends: '.test_instance'}
 # adopt-ubuntu-2004-tiamat-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-tiamat-py3: {extends: '.test_instance'}
-# adopt-ubuntu-1604-tiamat-py3: {extends: '.test_instance'}
 # adopt-centos-8-tiamat-py3: {extends: '.test_instance'}
 # adopt-centos-7-tiamat-py3: {extends: '.test_instance'}
 # adopt-amazonlinux-2-tiamat-py3: {extends: '.test_instance'}
@@ -161,13 +160,6 @@ haikuvm-ubuntu-1804-master-py3: {extends: '.test_instance'}
 intellij-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # oracle-ubuntu-1804-master-py3: {extends: '.test_instance'}
 zulu-ubuntu-1804-master-py3: {extends: '.test_instance'}
-adopt-ubuntu-1604-master-py3: {extends: '.test_instance'}
-amazon-ubuntu-1604-master-py3: {extends: '.test_instance'}
-graalvm-ubuntu-1604-master-py3: {extends: '.test_instance'}
-haikuvm-ubuntu-1604-master-py3: {extends: '.test_instance'}
-intellij-ubuntu-1604-master-py3: {extends: '.test_instance'}
-# oracle-ubuntu-1604-master-py3: {extends: '.test_instance'}
-zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # adopt-centos-8-master-py3: {extends: '.test_instance'}
 # amazon-centos-8-master-py3: {extends: '.test_instance'}
 # graalvm-centos-8-master-py3: {extends: '.test_instance'}
@@ -196,13 +188,6 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # intellij-fedora-33-master-py3: {extends: '.test_instance'}
 # oracle-fedora-33-master-py3: {extends: '.test_instance'}
 # zulu-fedora-33-master-py3: {extends: '.test_instance'}
-# adopt-fedora-32-master-py3: {extends: '.test_instance'}
-# amazon-fedora-32-master-py3: {extends: '.test_instance'}
-# graalvm-fedora-32-master-py3: {extends: '.test_instance'}
-# haikuvm-fedora-32-master-py3: {extends: '.test_instance'}
-# intellij-fedora-32-master-py3: {extends: '.test_instance'}
-# oracle-fedora-32-master-py3: {extends: '.test_instance'}
-# zulu-fedora-32-master-py3: {extends: '.test_instance'}
 # adopt-opensuse-leap-152-master-py3: {extends: '.test_instance'}
 # amazon-opensuse-leap-152-master-py3: {extends: '.test_instance'}
 # graalvm-opensuse-leap-152-master-py3: {extends: '.test_instance'}
@@ -267,7 +252,6 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # adopt-centos-7-3003-0-py3: {extends: '.test_instance'}
 # adopt-fedora-34-3003-0-py3: {extends: '.test_instance'}
 # adopt-fedora-33-3003-0-py3: {extends: '.test_instance'}
-# adopt-fedora-32-3003-0-py3: {extends: '.test_instance'}
 # adopt-amazonlinux-2-3003-0-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-8-3003-0-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-7-3003-0-py3: {extends: '.test_instance'}
@@ -278,12 +262,10 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # adopt-debian-9-3002-6-py3: {extends: '.test_instance'}
 # adopt-ubuntu-2004-3002-6-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3002-6-py3: {extends: '.test_instance'}
-# adopt-ubuntu-1604-3002-6-py3: {extends: '.test_instance'}
 # adopt-centos-8-3002-6-py3: {extends: '.test_instance'}
 # adopt-centos-7-3002-6-py3: {extends: '.test_instance'}
 # adopt-fedora-34-3002-6-py3: {extends: '.test_instance'}
 # adopt-fedora-33-3002-6-py3: {extends: '.test_instance'}
-# adopt-fedora-32-3002-6-py3: {extends: '.test_instance'}
 # adopt-amazonlinux-2-3002-6-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-8-3002-6-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-7-3002-6-py3: {extends: '.test_instance'}
@@ -296,12 +278,10 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # adopt-debian-9-3001-7-py3: {extends: '.test_instance'}
 # adopt-ubuntu-2004-3001-7-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3001-7-py3: {extends: '.test_instance'}
-# adopt-ubuntu-1604-3001-7-py3: {extends: '.test_instance'}
 # adopt-centos-8-3001-7-py3: {extends: '.test_instance'}
 # adopt-centos-7-3001-7-py3: {extends: '.test_instance'}
 # adopt-fedora-34-3001-7-py3: {extends: '.test_instance'}
 # adopt-fedora-33-3001-7-py3: {extends: '.test_instance'}
-# adopt-fedora-32-3001-7-py3: {extends: '.test_instance'}
 # adopt-opensuse-leap-152-3001-7-py3: {extends: '.test_instance'}
 # adopt-opensuse-tmbl-latest-3001-7-py3: {extends: '.test_instance'}
 # adopt-amazonlinux-2-3001-7-py3: {extends: '.test_instance'}
@@ -313,7 +293,6 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # adopt-debian-10-3000-9-py3: {extends: '.test_instance'}
 # adopt-debian-9-3000-9-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3000-9-py3: {extends: '.test_instance'}
-# adopt-ubuntu-1604-3000-9-py3: {extends: '.test_instance'}
 # adopt-centos-8-3000-9-py3: {extends: '.test_instance'}
 # adopt-centos-7-3000-9-py3: {extends: '.test_instance'}
 # adopt-opensuse-leap-152-3000-9-py3: {extends: '.test_instance'}
@@ -321,7 +300,6 @@ zulu-ubuntu-1604-master-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-8-3000-9-py3: {extends: '.test_instance'}
 # adopt-oraclelinux-7-3000-9-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3000-9-py2: {extends: '.test_instance'}
-# adopt-ubuntu-1604-3000-9-py2: {extends: '.test_instance'}
 # adopt-arch-base-latest-3000-9-py2: {extends: '.test_instance'}
 # adopt-gentoo-stage3-latest-3000-8-py3: {extends: '.test_instance'}
 # adopt-gentoo-stage3-systemd-3000-8-py3: {extends: '.test_instance'}
