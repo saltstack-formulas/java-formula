@@ -152,14 +152,14 @@ adopt-ubuntu-2004-master-py3: {extends: '.test_instance'}
 amazon-ubuntu-2004-master-py3: {extends: '.test_instance'}
 graalvm-ubuntu-2004-master-py3: {extends: '.test_instance'}
 haikuvm-ubuntu-2004-master-py3: {extends: '.test_instance'}
-intellij-ubuntu-2004-master-py3: {extends: '.test_instance'}
+# intellij-ubuntu-2004-master-py3: {extends: '.test_instance'}
 # oracle-ubuntu-2004-master-py3: {extends: '.test_instance'}
 zulu-ubuntu-2004-master-py3: {extends: '.test_instance'}
 adopt-ubuntu-1804-master-py3: {extends: '.test_instance'}
 amazon-ubuntu-1804-master-py3: {extends: '.test_instance'}
 graalvm-ubuntu-1804-master-py3: {extends: '.test_instance'}
 haikuvm-ubuntu-1804-master-py3: {extends: '.test_instance'}
-intellij-ubuntu-1804-master-py3: {extends: '.test_instance'}
+# intellij-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # oracle-ubuntu-1804-master-py3: {extends: '.test_instance'}
 zulu-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # adopt-centos-8-master-py3: {extends: '.test_instance'}

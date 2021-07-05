@@ -112,14 +112,14 @@ jobs:
     - env: INSTANCE=amazon-ubuntu-2004-master-py3
     - env: INSTANCE=graalvm-ubuntu-2004-master-py3
     - env: INSTANCE=haikuvm-ubuntu-2004-master-py3
-    - env: INSTANCE=intellij-ubuntu-2004-master-py3
+    # - env: INSTANCE=intellij-ubuntu-2004-master-py3
     # - env: INSTANCE=oracle-ubuntu-2004-master-py3
     - env: INSTANCE=zulu-ubuntu-2004-master-py3
     - env: INSTANCE=adopt-ubuntu-1804-master-py3
     - env: INSTANCE=amazon-ubuntu-1804-master-py3
     - env: INSTANCE=graalvm-ubuntu-1804-master-py3
     - env: INSTANCE=haikuvm-ubuntu-1804-master-py3
-    - env: INSTANCE=intellij-ubuntu-1804-master-py3
+    # - env: INSTANCE=intellij-ubuntu-1804-master-py3
     # - env: INSTANCE=oracle-ubuntu-1804-master-py3
     - env: INSTANCE=zulu-ubuntu-1804-master-py3
     # - env: INSTANCE=adopt-centos-8-master-py3
