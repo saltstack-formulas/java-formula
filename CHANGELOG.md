@@ -1,5 +1,54 @@
 # Changelog
 
+## [2.0.1](https://github.com/saltstack-formulas/java-formula/compare/v2.0.0...v2.0.1) (2022-02-21)
+
+
+### Bug Fixes
+
+* **libmapstack:** allow mapping by booleans and numbers ([aea3488](https://github.com/saltstack-formulas/java-formula/commit/aea3488b2e3f50f4088d4e718eae745b77153cee))
+* **libsaltcli+libmatchers:** ensure Salt client API detection [skip ci] ([e5f372e](https://github.com/saltstack-formulas/java-formula/commit/e5f372e17e67222d2c65eaef1fd6896121825fb0))
+
+
+### Code Refactoring
+
+* **map.jinja:** standardise v5 structure [skip ci] ([3c25663](https://github.com/saltstack-formulas/java-formula/commit/3c256632db950895d8850a221c1ea88fd8813669))
+
+
+### Continuous Integration
+
+* update linters to latest versions [skip ci] ([f5dd172](https://github.com/saltstack-formulas/java-formula/commit/f5dd172a3ae6dc0acc80de8eb896c301b4d7c2f3))
+* **3003.1:** update inc. AlmaLinux, Rocky & `rst-lint` [skip ci] ([6eec660](https://github.com/saltstack-formulas/java-formula/commit/6eec660a9339171f8b4d389a04fdde3734fa1e6c))
+* **gemfile:** allow rubygems proxy to be provided as an env var [skip ci] ([3d58f08](https://github.com/saltstack-formulas/java-formula/commit/3d58f086b4dd11b4263eb54a37192edd9a998671))
+* **gemfile+lock:** use `ssf` customised `inspec` repo [skip ci] ([b498844](https://github.com/saltstack-formulas/java-formula/commit/b4988449e526e5a40b9351ef2645334b4a9f2c37))
+* **intellij:** disable failing suite (missing bintray download) [skip ci] ([30c1267](https://github.com/saltstack-formulas/java-formula/commit/30c126753b50bfe0716cf87879d1c471ee0cd2e5))
+* **kitchen:** move `provisioner` block & update `run_command` [skip ci] ([8a93926](https://github.com/saltstack-formulas/java-formula/commit/8a93926b99d8c74b6ba199f662dc353c98ed93cd))
+* **kitchen+ci:** update with `3004` pre-salted images/boxes [skip ci] ([6b931bd](https://github.com/saltstack-formulas/java-formula/commit/6b931bd64e6049fe78d84eec43688f99e31a4270))
+* **kitchen+ci:** update with latest `3003.2` pre-salted images [skip ci] ([55f2176](https://github.com/saltstack-formulas/java-formula/commit/55f2176c42ba5cd4c0b0756f5710cc8aac095390))
+* **kitchen+ci:** update with latest CVE pre-salted images [skip ci] ([4b82aef](https://github.com/saltstack-formulas/java-formula/commit/4b82aef3d7e276dcbd5e9ee33d699f4d2057024d))
+* **kitchen+ci:** use latest pre-salted images (after CVE) [skip ci] ([e5e0b49](https://github.com/saltstack-formulas/java-formula/commit/e5e0b493d8f0d75b5dca2a24dbb29b7c256c698e))
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] ([4f70af9](https://github.com/saltstack-formulas/java-formula/commit/4f70af9bb0167e8dba7cc64e3c3d08f759b2f441))
+* add Debian 11 Bullseye & update `yamllint` configuration [skip ci] ([b78bb54](https://github.com/saltstack-formulas/java-formula/commit/b78bb54611d9cc3fdde5d07c4f883de2ae55a338))
+* **kitchen+gitlab:** remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci] ([b10f529](https://github.com/saltstack-formulas/java-formula/commit/b10f529cb57c51c1e08e8e5410b5568528b7e7f2))
+* add `arch-master` to matrix and update `.travis.yml` [skip ci] ([fc9c052](https://github.com/saltstack-formulas/java-formula/commit/fc9c052bd47a3efdba7893e42ff0c294e0836ed1))
+* **kitchen+gitlab:** adjust matrix to add `3003` [skip ci] ([69c7574](https://github.com/saltstack-formulas/java-formula/commit/69c7574fdde775245e7f8ace43ad5b1110398b00))
+
+
+### Documentation
+
+* **map.jinja:** fix `rst-lint` violation [skip ci] ([f5f76c5](https://github.com/saltstack-formulas/java-formula/commit/f5f76c5b4f202334cca9477460913cdc8ac74c30))
+* **readme:** fix `coala` violations [skip ci] ([01878f9](https://github.com/saltstack-formulas/java-formula/commit/01878f9340813408ec9d6d4dabda83cf356eed5f))
+
+
+### Styles
+
+* **libsaltcli:** fix comments to jinja comments [skip ci] ([6c66b5a](https://github.com/saltstack-formulas/java-formula/commit/6c66b5a7b318c4fb87a88a812d7423bc9e8aaf33))
+
+
+### Tests
+
+* **system:** add `build_platform_codename` [skip ci] ([e278c8b](https://github.com/saltstack-formulas/java-formula/commit/e278c8b9038714b30a2880ed8246a5debb8bb550))
+* standardise use of `share` suite & `_mapdata` state [skip ci] ([0a75e77](https://github.com/saltstack-formulas/java-formula/commit/0a75e77a13bcdf4d492011864f9f32a5faf70d26))
+
 # [2.0.0](https://github.com/saltstack-formulas/java-formula/compare/v1.0.4...v2.0.0) (2021-02-25)
 
 
