@@ -192,6 +192,13 @@ zulu-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # intellij-centos-7-master-py3: {extends: '.test_instance'}
 # oracle-centos-7-master-py3: {extends: '.test_instance'}
 # zulu-centos-7-master-py3: {extends: '.test_instance'}
+# adopt-fedora-35-master-py3: {extends: '.test_instance'}
+# amazon-fedora-35-master-py3: {extends: '.test_instance'}
+# graalvm-fedora-35-master-py3: {extends: '.test_instance'}
+# haikuvm-fedora-35-master-py3: {extends: '.test_instance'}
+# intellij-fedora-35-master-py3: {extends: '.test_instance'}
+# oracle-fedora-35-master-py3: {extends: '.test_instance'}
+# zulu-fedora-35-master-py3: {extends: '.test_instance'}
 # adopt-fedora-34-master-py3: {extends: '.test_instance'}
 # amazon-fedora-34-master-py3: {extends: '.test_instance'}
 # graalvm-fedora-34-master-py3: {extends: '.test_instance'}
@@ -276,6 +283,7 @@ zulu-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3004-0-py3: {extends: '.test_instance'}
 # adopt-centos-stream8-3004-0-py3: {extends: '.test_instance_failure_permitted'}
 # adopt-centos-7-3004-0-py3: {extends: '.test_instance'}
+# adopt-fedora-35-3004-0-py3: {extends: '.test_instance'}
 # adopt-fedora-34-3004-0-py3: {extends: '.test_instance'}
 # adopt-opensuse-leap-153-3004-0-py3: {extends: '.test_instance'}
 # adopt-opensuse-tmbl-latest-3004-0-py3: {extends: '.test_instance_failure_permitted'}
@@ -293,7 +301,7 @@ zulu-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3003-3-py3: {extends: '.test_instance'}
 # adopt-centos-stream8-3003-3-py3: {extends: '.test_instance_failure_permitted'}
 # adopt-centos-7-3003-3-py3: {extends: '.test_instance'}
-# adopt-fedora-35-3003-3-py3: {extends: '.test_instance_failure_permitted'}
+# adopt-fedora-35-3003-3-py3: {extends: '.test_instance'}
 # adopt-fedora-34-3003-3-py3: {extends: '.test_instance'}
 # adopt-opensuse-leap-153-3003-3-py3: {extends: '.test_instance'}
 # adopt-opensuse-tmbl-latest-3003-3-py3: {extends: '.test_instance_failure_permitted'}
@@ -308,7 +316,7 @@ zulu-ubuntu-1804-master-py3: {extends: '.test_instance'}
 # adopt-ubuntu-2004-3002-7-py3: {extends: '.test_instance'}
 # adopt-ubuntu-1804-3002-7-py3: {extends: '.test_instance'}
 # adopt-centos-7-3002-7-py3: {extends: '.test_instance'}
-# adopt-fedora-35-3002-7-py3: {extends: '.test_instance_failure_permitted'}
+# adopt-fedora-35-3002-7-py3: {extends: '.test_instance'}
 # adopt-fedora-34-3002-7-py3: {extends: '.test_instance'}
 # adopt-opensuse-leap-153-3002-7-py3: {extends: '.test_instance'}
 # adopt-opensuse-tmbl-latest-3002-7-py3: {extends: '.test_instance_failure_permitted'}

@@ -144,6 +144,13 @@ jobs:
     # - env: INSTANCE=intellij-centos-7-master-py3
     # - env: INSTANCE=oracle-centos-7-master-py3
     # - env: INSTANCE=zulu-centos-7-master-py3
+    # - env: INSTANCE=adopt-fedora-35-master-py3
+    # - env: INSTANCE=amazon-fedora-35-master-py3
+    # - env: INSTANCE=graalvm-fedora-35-master-py3
+    # - env: INSTANCE=haikuvm-fedora-35-master-py3
+    # - env: INSTANCE=intellij-fedora-35-master-py3
+    # - env: INSTANCE=oracle-fedora-35-master-py3
+    # - env: INSTANCE=zulu-fedora-35-master-py3
     # - env: INSTANCE=adopt-fedora-34-master-py3
     # - env: INSTANCE=amazon-fedora-34-master-py3
     # - env: INSTANCE=graalvm-fedora-34-master-py3
@@ -228,6 +235,7 @@ jobs:
     # - env: INSTANCE=adopt-ubuntu-1804-3004-0-py3
     # - env: INSTANCE=adopt-centos-stream8-3004-0-py3
     # - env: INSTANCE=adopt-centos-7-3004-0-py3
+    # - env: INSTANCE=adopt-fedora-35-3004-0-py3
     # - env: INSTANCE=adopt-fedora-34-3004-0-py3
     # - env: INSTANCE=adopt-opensuse-leap-153-3004-0-py3
     # - env: INSTANCE=adopt-opensuse-tmbl-latest-3004-0-py3
