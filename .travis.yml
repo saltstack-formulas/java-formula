@@ -166,13 +166,6 @@ jobs:
     # - env: INSTANCE=intellij-fedora-35-master-py3
     # - env: INSTANCE=oracle-fedora-35-master-py3
     # - env: INSTANCE=zulu-fedora-35-master-py3
-    # - env: INSTANCE=adopt-fedora-34-master-py3
-    # - env: INSTANCE=amazon-fedora-34-master-py3
-    # - env: INSTANCE=graalvm-fedora-34-master-py3
-    # - env: INSTANCE=haikuvm-fedora-34-master-py3
-    # - env: INSTANCE=intellij-fedora-34-master-py3
-    # - env: INSTANCE=oracle-fedora-34-master-py3
-    # - env: INSTANCE=zulu-fedora-34-master-py3
     # - env: INSTANCE=adopt-opensuse-leap-153-master-py3
     # - env: INSTANCE=amazon-opensuse-leap-153-master-py3
     # - env: INSTANCE=graalvm-opensuse-leap-153-master-py3
@@ -253,7 +246,6 @@ jobs:
     # - env: INSTANCE=adopt-centos-7-3004-1-py3
     # - env: INSTANCE=adopt-fedora-36-3004-1-py3
     # - env: INSTANCE=adopt-fedora-35-3004-1-py3
-    # - env: INSTANCE=adopt-fedora-34-3004-1-py3
     # - env: INSTANCE=adopt-amazonlinux-2-3004-1-py3
     # - env: INSTANCE=adopt-oraclelinux-8-3004-1-py3
     # - env: INSTANCE=adopt-oraclelinux-7-3004-1-py3
@@ -274,14 +266,6 @@ jobs:
     # - env: INSTANCE=adopt-oraclelinux-8-3003-4-py3
     # - env: INSTANCE=adopt-oraclelinux-7-3003-4-py3
     # - env: INSTANCE=adopt-almalinux-8-3003-4-py3
-    # - env: INSTANCE=adopt-debian-10-3002-8-py3
-    # - env: INSTANCE=adopt-debian-9-3002-8-py3
-    # - env: INSTANCE=adopt-ubuntu-2004-3002-8-py3
-    # - env: INSTANCE=adopt-ubuntu-1804-3002-8-py3
-    # - env: INSTANCE=adopt-centos-7-3002-8-py3
-    # - env: INSTANCE=adopt-amazonlinux-2-3002-8-py3
-    # - env: INSTANCE=adopt-oraclelinux-8-3002-8-py3
-    # - env: INSTANCE=adopt-oraclelinux-7-3002-8-py3
 
     ## Define the release stage that runs `semantic-release`
     - stage: 'release'
