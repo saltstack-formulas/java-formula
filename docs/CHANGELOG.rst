@@ -2,6 +2,29 @@
 Changelog
 =========
 
+`2.1.0 <https://github.com/saltstack-formulas/java-formula/compare/v2.0.1...v2.1.0>`_ (2024-01-23)
+------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* update ``pre-commit`` configuration inc. for pre-commit.ci [skip ci] (\ `67c725d <https://github.com/saltstack-formulas/java-formula/commit/67c725d937031ddce2afd1ab303f9fb09dc54c8b>`_\ )
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] (\ `5ad6e8f <https://github.com/saltstack-formulas/java-formula/commit/5ad6e8f3f8cfbbe5dd94e3fa2779a8e828c30505>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **adopt:** new ver contain ``+`` replaced by ``_`` on archive name only (\ `35aeb69 <https://github.com/saltstack-formulas/java-formula/commit/35aeb694af3492d8eba5ec7dec7d08c0c40ad00b>`_\ )
+
+Tests
+^^^^^
+
+
+* **_mapdata:** add verification files for ``ubuntu-22`` [skip ci] (\ `5a9746a <https://github.com/saltstack-formulas/java-formula/commit/5a9746ac4e73d0fe36fdecebf3973978561e2d66>`_\ )
+* **system.rb:** add support for ``mac_os_x`` [skip ci] (\ `1960459 <https://github.com/saltstack-formulas/java-formula/commit/19604598f74f68428b124f3453219c63ba2044b3>`_\ )
+
 `2.0.1 <https://github.com/saltstack-formulas/java-formula/compare/v2.0.0...v2.0.1>`_ (2022-02-21)
 ------------------------------------------------------------------------------------------------------
 
