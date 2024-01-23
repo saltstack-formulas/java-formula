@@ -9,7 +9,7 @@
     {%- set name = mapdata.adopt.pkg.name|replace('8U', mapdata.release ~ 'U') %}
     {%- set jvm = 'hotspot' if 'jvm' not in mapdata.adopt else mapdata.adopt.jvm %}
     {%- set uri = '%s%s/%s_%s_%s_%s'|format(mapdata.adopt.pkg.uri, jversion, name, mapdata.arch, mapdata.adopt.os, jvm) %}
-    {%- set url = '%s_%s'|format(uri, jversion|replace('-','',1)) %}
+    {%- set url = '%s_%s'|format(uri, jversion|replace('-','',1)|replace("+","_")) %}
     {%- set name = 'adoptopenjdk-%s%s'|format(mapdata.release, '-' ~ mapdata.adopt.jvm if 'openj9' in jvm else '') %}
 
 {%- elif 'amazon' in provider|lower %}
